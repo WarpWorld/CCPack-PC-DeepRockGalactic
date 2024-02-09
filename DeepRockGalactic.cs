@@ -1,0 +1,176 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using CrowdControl.Common;
+using JetBrains.Annotations;
+using ConnectorType = CrowdControl.Common.ConnectorType;
+
+namespace CrowdControl.Games.Packs.DeepRockGalactic;
+
+[UsedImplicitly]
+public class DeepRockGalactic : FileEffectPack
+{
+    public override string ReadFile => "Z:\\SteamLibrary\\steamapps\\common\\Deep Rock Galactic\\FSD\\Mods\\CC\\output.txt"; //Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\CrowdControl-Apps\\DRG\\output.txt";
+    public override string WriteFile => "Z:\\SteamLibrary\\steamapps\\common\\Deep Rock Galactic\\FSD\\Mods\\CC\\input.txt"; // Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\CrowdControl-Apps\\DRG\\input.txt";
+    public static string ReadyCheckFile = "Z:\\SteamLibrary\\steamapps\\common\\Deep Rock Galactic\\FSD\\Mods\\CC\\connector.txt";
+
+    public override ISimpleTCPPack.MessageFormat MessageFormat => ISimpleTCPPack.MessageFormat.CrowdControlLegacyIntermediate;
+
+    public DeepRockGalactic(UserRecord player, Func<CrowdControlBlock, bool> responseHandler, Action<object> statusUpdateHandler) : base(player, responseHandler, statusUpdateHandler) { }
+
+    public override Game Game { get; } = new("Deep Rock Galactic", "DeepRockGalactic", "PC", ConnectorType.FileConnector);
+    
+    //Parameters
+    private readonly ParameterDef TargetsMain = new("Target Player", "targetPlayerType",
+        new Parameter("Host", "1"),
+        new Parameter("Random Teammate", "2"),
+        new Parameter("All", "3")
+    );
+    private readonly ParameterDef TargetsRestricted = new("Target Player", "targetPlayerType",
+        new Parameter("Host", "1"),
+        new Parameter("Random Teammate", "2")
+    );
+
+    public override EffectList Effects => new List<Effect>
+    {
+        //Enemy - Glyphids Spawn
+        new("Spawn Grunt [M]", "grunt_normal") { Price = 10, Quantity = 10, Category = "Enemy / Glyphid", Description = "Spawns a Grunt" },
+        new("Spawn Slasher [M]", "grunt_slasher") { Price = 20, Quantity = 5, Category = "Enemy / Glyphid", Description = "Spawns a Slasher" },
+        new("Spawn Guard [M]", "grunt_guard") { Price = 20, Quantity = 5, Category = "Enemy / Glyphid", Description = "Spawns a Guard" },
+        new("Spawn Acid Spitter [M]", "grunt_spitter") { Price = 50, Quantity = 5, Category = "Enemy / Glyphid", Description = "Spawns an Acid Spitter" },
+        new("Spawn Web Spitter [M]", "grunt_webber") { Price = 50, Quantity = 5, Category = "Enemy / Glyphid", Description = "Spawns a Webber" },
+        new("Spawn Warden [M]", "grunt_warden") { Price = 100, Category = "Enemy / Glyphid", Description = "Spawns a Warden" },
+        new("Spawn Swarmers [M]", "grunt_swarmers") { Price = 10, Quantity = 10, Category = "Enemy / Glyphid", Description = "Spawns a couple swarmers (Quantity x2)" },
+        new("Spawn Praetorian [M]", "grunt_praetorian") { Price = 150, Quantity = 3, Category = "Enemy / Glyphid", Description = "Spawns an Praetorian" },
+        new("Spawn Opressor [M]", "grunt_opressor") { Price = 250, Category = "Enemy / Glyphid", Description = "Spawns an Opressor" },
+        new("Spawn Stingtail [M]", "grunt_stingtail") { Price = 200, Category = "Enemy / Glyphid", Description = "Spawns an Stingtail" },
+        new("Spawn Septic Spreader [M]", "grunt_lobber") { Price = 200, Category = "Enemy / Glyphid", Description = "Spawns an Septic Spreader" },
+        new("Spawn Menace [M]", "grunt_menace") { Price = 150, Category = "Enemy / Glyphid", Description = "Spawns an Menace" },
+        new("Spawn Exploder [M]", "grunt_exploder") { Price = 50, Quantity = 5, Category = "Enemy / Glyphid", Description = "Spawns an Exploder" },
+        new("Spawn Bulk Detonator [M]", "grunt_bulk") { Price = 500, Category = "Enemy / Glyphid", Description = "Spawns a Bulk Detonator" },
+        new("Spawn Crassus Bulk Detonator [M]", "grunt_bulk_gold") { Price = 750, Category = "Enemy / Glyphid", Description = "Spawns a Crassus Bulk Detonator" },
+        new("Spawn Ghost Bulk Detonator [M]", "grunt_bulk_ghost") { Price = 1000, Category = "Enemy / Glyphid", Description = "Spawns a Ghost Bulk Detonator" },
+        new("Spawn Dreadnaught (Boss) [M]", "grunt_dreadnaught") { Price = 1000, Category = "Enemy / Glyphid", Description = "Spawns the Glyphid Dreadnaught" },
+        new("Spawn Arbalest (Boss) [M]", "grunt_twin_a") { Price = 500, Category = "Enemy / Glyphid", Description = "Spawns the Dreadnaught Twin Arbalest" },
+        new("Spawn Lacerator (Boss) [M]", "grunt_twin_b") { Price = 500, Category = "Enemy / Glyphid", Description = "Spawns the Dreadnaught Twin Lacerator" },
+        new("Spawn Hiveguard (Boss) [M]", "grunt_hiveguard") { Price = 1000, Category = "Enemy / Glyphid", Description = "Spawns the Dreadnaught Hiveguard" },
+
+        //Enemy - Mactera
+        new("Spawn Mactera Shooter [M]", "mactera_normal") { Price = 25, Quantity = 5, Category = "Enemy / Mactera", Description = "Spawns a Mactera Shooter" },
+        new("Spawn Mactera Grabber [M]", "mactera_grabber") { Price = 100, Category = "Enemy / Mactera", Description = "Spawns a Mactera Greabber" },
+        new("Spawn Mactera Goo Bomber [M]", "mactera_goobomber") { Price = 100, Category = "Enemy / Mactera", Description = "Spawns a Mactera Goo Bomber" },
+        new("Spawn Mactera Tri-Jaw [M]", "mactera_trijaw") { Price = 100, Category = "Enemy / Mactera", Description = "Spawns a Mactera TriJaw" },
+        new("Spawn Mactera Brundle [M]", "mactera_brundle") { Price = 50, Category = "Enemy / Mactera", Description = "Spawns a Mactera Brundle" },
+
+        //Enemy - RockPox
+        new("Spawn Rockpox Larva [M]", "rockpox_larva") { Price = 10, Quantity = 10, Category = "Enemy / RockPox", Description = "Spawns Some RockPox Larva (Quantity x2)" },
+        new("Spawn Rockpox Grunt [M]", "rockpox_grunt") { Price = 50, Quantity = 5, Category = "Enemy / RockPox", Description = "Spawns a RockPox Grunt" },
+        new("Spawn Rockpox Exploder [M]", "rockpox_exploder") { Price = 75, Quantity = 5, Category = "Enemy / RockPox", Description = "Spawns a RockPox Exploder" },
+        new("Spawn Rockpox Spitter [M]", "rockpox_spitter") { Price = 75, Quantity = 5, Category = "Enemy / RockPox", Description = "Spawns a RockPox Spitter" },
+        new("Spawn Rockpox Praetorian [M]", "rockpox_praetorian") { Price = 175, Quantity = 3, Category = "Enemy / RockPox", Description = "Spawns a RockPox Praetorian" },
+        new("Spawn Rockpox Goo Bomber [M]", "rockpox_goobomber") { Price = 125, Category = "Enemy / RockPox", Description = "Spawns a RockPox Goo Bomber" },
+        new("Spawn Rockpox Naedocyte Breeder [M]", "rockpox_breeder") { Price = 200, Category = "Enemy / RockPox", Description = "Spawns a RockPox Naedocyte Breeder" },
+        new("Spawn Rockpox Corruptor (Boss) [M]", "rockpox_corruptor") { Price = 750, Category = "Enemy / RockPox", Description = "Spawns a RockPox Corruptor" },
+
+        //Enemy - Rivals
+        new("Spawn Rival Shredders [M]", "rival_shredders") { Price = 10, Quantity = 5, Category = "Enemy / Rivals", Description = "Spawns a small group of Rival Shredders (Quantity x2)" },
+        new("Spawn Rival Patrol Bot [M]", "rival_patrolbot") { Price = 100, Quantity = 3, Category = "Enemy / Rivals", Description = "Spawns a Patrol Bot" },
+        new("Spawn Rival Prospector Drone (Boss) [M]", "rival_prospector") { Price = 500, Category = "Enemy / Rivals", Description = "Spawns a Prospector Bot" },
+        new("Spawn Rival Nemesis (Boss) [M]", "rival_nemesis") { Price = 500, Category = "Enemy / Rivals", Description = "Spawns a Nemesis" },
+
+        //Enemy - Naedocyte
+        new("Spawn Naedocyte Shockers [M]", "jelly_shockers") { Price = 10, Quantity = 5, Category = "Enemy / Naedocyte", Description = "Spawns a small group of Shockers (Quantity x3)" },
+        new("Spawn Naedocyte Breeder [M]", "jelly_breeder") { Price = 150, Category = "Enemy / Naedocyte", Description = "Spawns a Naedocyte Breeder" },
+
+        //Enemy - Other
+        new("Spawn Nayaka Trawler [M]", "enemy_trawler") { Price = 150, Category = "Enemy / Other", Description = "Spawns a Nayaka Trawler" },
+        new("Spawn Q'ronar Youngling [M]", "enemy_youngling") { Price = 100, Quantity = 3, Category = "Enemy / Other", Description = "Spawns a Q'ronar Youngling" },
+        new("Spawn Q'ronar Shellback [M]", "enemy_shellback") { Price = 200, Category = "Enemy / Other", Description = "Spawns a Q'ronar Shellback" },
+        new("Spawn Korlok Tyrant Weed (Boss) [M]", "enemy_tyrantweed") { Price = 500, Category = "Enemy / Other", Description = "Spawns a Tyrant Weed" },
+        new("Spawn BET-C (Boss) [M]", "enemy_betc") { Price = 500, Category = "Enemy / Other", Description = "Spawns a BET-C" },
+        new("Spawn Cave Leech [M]", "enemy_leech") { Price = 100, Category = "Enemy / Other", Description = "Spawns a Cave Leech" },
+        new("Spawn Spitball Infector [M]", "enemy_spitballer") { Price = 100, Category = "Enemy / Other", Description = "Spawns a Spitball Infector" },
+        new("Spawn Brood Nexus [M]", "enemy_broodnexus") { Price = 100, Category = "Enemy / Other", Description = "Spawns a Brood Nexus" },
+        new("Spawn Stabber Vine [M]", "enemy_stabber") { Price = 100, Category = "Enemy / Other", Description = "Spawns a Stabber Vine" },
+        new("Spawn Deeptora Wasp Nest [M]", "enemy_wasps") { Price = 50, Category = "Enemy / Other", Description = "Spawns a hive of Wasps" },
+
+        //Enemy - Custom
+        new("Spawn Hunter Grabber [M]", "custom_huntergrabber") { Price = 100, Quantity = 2, Category = "Enemy / Custom", Description = "Spawns an Invisible Fast Grabber" },
+        new("Spawn Mega Bulk [M]", "custom_megabulk") { Price = 500, Category = "Enemy / Custom", Description = "Spawns a Mega Sized Bulk with Random Types" },
+        new("Spawn Jumpscare Bulk [M]", "custom_jumpscarebulk") { Price = 500, Category = "Enemy / Custom", Description = "Spawns a Mega Sized Bulk with Random Types" },
+        new("Spawn Anxious Nuke Bug [M]", "custom_anxiousnukebug") { Price = 250, Category = "Enemy / Custom", Description = "Spawns an anxious lootbug that if given too little pets will explode, or too many pets will explode!" },
+        new("Spawn Egg Menace [M]", "custom_eggmenace") { Price = 300, Category = "Enemy / Custom", Description = "Spawns a menace that shoots explosive and phermoned swarmer eggs!" },
+        new("Spawn Wonky Grunts [M]", "custom_wonkygrunts") { Price = 50, Quantity = 10, Category = "Enemy / Custom", Description = "Spawns a random slasher or guard glyphid with randomized x y z dimensions" },
+        new("Spawn Nesting Glyphids [M]", "custom_nestedglyphids") { Price = 300, Category = "Enemy / Custom", Description = "Spawns an Opressor, that splits into 2 Praetorians, then 4 grunts, then 8 swarmers!" },
+        new("Spawn Cluster Bulk [M]", "custom_clusterbulk") { Price = 500, Category = "Enemy / Custom", Description = "Spawns a bulk that when killed drops a lot of cluster bomb explosions! Huge AoE!" },
+        new("Spawn Reaper [M]", "custom_reaper") { Price = 1000, Category = "Enemy / Custom", Description = "Spawns a reaper stalker. It hunts the team for the whole mission respawning after death and getting stronger with each death!" },
+
+        //Critters
+        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" },
+        new("Spawn Golden Lootbug [M]", "critter_lootbug_gold") { Price = 25, Quantity = 5, Category = "Critter", Description = "Spawns a Golden Lootbug" },
+        new("Spawn Huuli Hoarder [M]", "critter_hoarder") { Price = 100, Category = "Critter", Description = "Spawns a Huuli Hoarder" },
+        new("Spawn Naedocyte Cave Cruiser [M]", "critter_cavecruiser") { Price = 5, Category = "Critter", Description = "Spawns a Cave Cruiser" },
+        new("Spawn Cave Vine [M]", "critter_cavevine") { Price = 5, Category = "Critter", Description = "Spawns a Cave Vine" },
+        new("Spawn Silicate Harvester [M]", "critter_harvester") { Price = 10, Category = "Critter", Description = "Spawns a Silicate Harvester" },
+        new("Spawn Cave Angel [M]", "critter_caveangel") { Price = 25, Quantity = 5,  Category = "Critter", Description = "Spawns a Cave Angel" },
+        new("Spawn Fester Flea [M]", "critter_flea") { Price = 25, Quantity = 10, Category = "Critter", Description = "Spawns a Fester Flea" },
+
+        //Helpful Items - Custom
+        new("Give Molly a Gun! [M]", "custom_battlemolly") { Price = 200, Category = "Helpful / Custom", Description = "Spawns a minehead turret attached to each Mule / Mini-Mule!" },
+        new("Spawn Pet Shredder [M]", "custom_petshredder") { Price = 200, Category = "Helpful / Custom", Description = "Spawns a friendly pet shredder with your name! (Lasts Mission Duration)" },
+
+        //Helpful Items - Vanilla
+        new("Spawn Minehead Sentry [M]", "helpful_battlesentry") { Price = 100, Quantity = 5, Category = "Helpful / Vanilla", Description = "Spawns a minehead turret!" },
+        new("Spawn Floodlight [M]", "helpful_floodlight") { Price = 50, Category = "Helpful / Vanilla", Description = "Spawns a floodlight!" },
+        new("Spawn Jet Boots [M]", "helpful_jetboots") { Price = 100, Category = "Helpful / Vanilla", Description = "Spawns a jetboot crate!" },
+        new("Spawn Resupply Pod [M]", "helpful_resupply") { Price = 100, Quantity = 2, Category = "Helpful / Vanilla", Description = "Spawns a resupply for the team!" },
+
+        //Fun Effects
+        //Beer Effects
+        new("Drunk Player [A]", "beer_drunk") { Price = 200, Parameters = TargetsMain, Category = "Beer",  Duration = 15, Description = "Makes target drunk for 15s" },
+        new("Player Random Beer [A]", "beer_random") { Price = 100, Parameters = TargetsMain, Category = "Beer", Description = "Gives the Target a Random Beer Effect." },
+
+        //Target Effects
+        new("Kill Target [M]", "target_kill") { Price = 1000, Parameters = TargetsRestricted, Category = "Event", Description = "Downs The Target Dwarf" },
+        new("Revive Target [M]", "target_revive") { Price = 500, Parameters = TargetsRestricted, Category = "Event", Description = "Revives The Target Dwarf" },
+        new("Spawn Shield Target [M]", "target_shield") { Price = 100, Parameters = TargetsRestricted, Category = "Event", Duration = 10, Description = "Spawns a shield for the target!" },
+        new("Spawn Red Sugar On Target [M]", "target_redsugar") { Price = 100, Category = "Event", Description = "Spawns red sugar on the target!" },
+        new("Spawn Host Confetti [A]", "target_confetti") { Price = 10, Category = "Host", Description = "Spawns confetti on the host!" },
+
+        //Full Team
+        new("Revive All [M]", "all_revive") { Price = 1000, Category = "Everyone", Description = "Revives the Team" },
+        new("Spawn Shield All [M]", "all_shield") { Price = 200, Category = "Everyone", Duration = 10, Description = "Spawns a shield for everyone!" },
+        new("Spawn Red Sugar All [M]", "all_redsugar") { Price = 200, Category = "Everyone", Description = "Spawns a Red Sugar Crystal for everyone!" },
+
+        //Events
+        new("Slomo Mode [M]", "event_slomo") { Price = 150, Category = "Event", Duration = 15, Description = "Put the game in slow motion for 15s" },
+        new("Close Drop Pod Doors [A]", "event_closepod") { Price = 200, Category = "Event", Duration = 10, Description = "Close the Drop pod doors for 10s" },
+        new("Spin Equipment [A]", "event_spinequipment") { Price = 300, Category = "Event", Duration = 20, Description = "Spin all platforms and pods (Supply and Drop) for 20s" },
+        new("Sink Equipment [M]", "event_sinkequipment") { Price = 500, Category = "Event", Description = "Sink all platforms and pods (Supply and Drop) 3m into the ground." },
+        new("EMP All Shields [M]", "event_emp") { Price = 250, Category = "Event", Description = "EMP the entire team's shields!" }
+
+    };
+
+    static bool IsReady()
+    {
+        if(File.Exists(ReadyCheckFile))
+        {
+            string readyTest = File.ReadAllText(ReadyCheckFile);
+
+            if (String.IsNullOrEmpty(readyTest))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+
+}
