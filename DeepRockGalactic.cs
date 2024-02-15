@@ -10,9 +10,9 @@ namespace CrowdControl.Games.Packs.DeepRockGalactic;
 [UsedImplicitly]
 public class DeepRockGalactic : FileEffectPack
 {
-    public override string ReadFile => "Z:\\SteamLibrary\\steamapps\\common\\Deep Rock Galactic\\FSD\\Mods\\CC\\output.txt"; //Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\CrowdControl-Apps\\DRG\\output.txt";
-    public override string WriteFile => "Z:\\SteamLibrary\\steamapps\\common\\Deep Rock Galactic\\FSD\\Mods\\CC\\input.txt"; // Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\CrowdControl-Apps\\DRG\\input.txt";
-    public static string ReadyCheckFile = "Z:\\SteamLibrary\\steamapps\\common\\Deep Rock Galactic\\FSD\\Mods\\CC\\connector.txt";
+    public override string ReadFile => "FSD\\Mods\\CC\\output.txt"; 
+    public override string WriteFile => "FSD\\Mods\\CC\\input.txt";
+    public static string ReadyCheckFile = "FSD\\Mods\\CC\\connector.txt";
 
     public override ISimpleTCPPack.MessageFormat MessageFormat => ISimpleTCPPack.MessageFormat.CrowdControlLegacyIntermediate;
 
