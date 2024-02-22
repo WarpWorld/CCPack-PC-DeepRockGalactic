@@ -10,9 +10,9 @@ namespace CrowdControl.Games.Packs.DeepRockGalactic;
 [UsedImplicitly]
 public class DeepRockGalactic : FileEffectPack
 {
-    public override string ReadFile => "FSD\\Mods\\CC\\output.txt"; 
-    public override string WriteFile => "FSD\\Mods\\CC\\input.txt";
-    public static string ReadyCheckFile = "FSD\\Mods\\CC\\connector.txt";
+    public override string ReadFile => "FSD\\Mods\\CC\\output.txt"; //GameFolder + "/FSD/Mods/CC/output.txt";
+    public override string WriteFile => "FSD\\Mods\\CC\\input.txt"; //GameFolder + "/FSD/Mods/CC/input.txt";
+    public static string ReadyCheckFile = "FSD\\Mods\\CC\\connector.txt"; //GameFolder + "/FSD/Mods/CC/connector.txt";
 
     public override ISimpleTCPPack.MessageFormat MessageFormat => ISimpleTCPPack.MessageFormat.CrowdControlLegacyIntermediate;
 
@@ -120,34 +120,47 @@ public class DeepRockGalactic : FileEffectPack
         new("Spawn Pet Shredder [M]", "custom_petshredder") { Price = 200, Category = "Helpful / Custom", Description = "Spawns a friendly pet shredder with your name! (Lasts Mission Duration)" },
 
         //Helpful Items - Vanilla
-        new("Spawn Minehead Sentry [M]", "helpful_battlesentry") { Price = 100, Quantity = 5, Category = "Helpful / Vanilla", Description = "Spawns a minehead turret!" },
+        new("Spawn Minehead Sentry [M]", "helpful_battlesentry") { Price = 100, Quantity = 3, Category = "Helpful / Vanilla", Description = "Spawns a minehead turret!" },
         new("Spawn Floodlight [M]", "helpful_floodlight") { Price = 50, Category = "Helpful / Vanilla", Description = "Spawns a floodlight!" },
         new("Spawn Jet Boots [M]", "helpful_jetboots") { Price = 100, Category = "Helpful / Vanilla", Description = "Spawns a jetboot crate!" },
         new("Spawn Resupply Pod [M]", "helpful_resupply") { Price = 100, Quantity = 2, Category = "Helpful / Vanilla", Description = "Spawns a resupply for the team!" },
 
         //Fun Effects
         //Beer Effects
-        new("Drunk Player [A]", "beer_drunk") { Price = 200, Parameters = TargetsMain, Category = "Beer",  Duration = 15, Description = "Makes target drunk for 15s" },
-        new("Player Random Beer [A]", "beer_random") { Price = 100, Parameters = TargetsMain, Category = "Beer", Description = "Gives the Target a Random Beer Effect." },
+        new("Drunk Target [A]", "beer_drunk") { Price = 200, Parameters = TargetsMain, Category = "Beer",  Duration = 15, Description = "Makes target drunk for 15s" },
+        new("Target Random Beer [A]", "beer_random") { Price = 100, Parameters = TargetsMain, Category = "Beer", Description = "Gives the Target a Random Beer Effect." },
+        new("Target Flintlock Delight [A]", "beer_flintlock") { Price = 100, Parameters = TargetsMain, Category = "Beer", Description = "Gives the Target a Flintlock Delight Beer Effect." },
+        new("Target Malt Rockbeaerer [A]", "beer_rockbearer") { Price = 100, Parameters = TargetsMain, Category = "Beer", Description = "Gives the Target a Malt Rockbearer Beer Effect." },
+        new("Target Underhill Deluxe [A]", "beer_underhill") { Price = 100, Parameters = TargetsMain, Category = "Beer", Description = "Gives the Target a Underhill Deluxe Beer Effect." },
+        new("Target Blackreach Blonde [A]", "beer_blackreach") { Price = 100, Parameters = TargetsMain, Category = "Beer", Description = "Gives the Target a Blackreach Blonde Beer Effect." },
+        new("Target Gut Wrecker [A]", "beer_gutwrecker") { Price = 100, Parameters = TargetsMain, Category = "Beer", Description = "Gives the Target a Gut Wrecker Beer Effect." },
+        new("Target Burning Love [A]", "beer_burning") { Price = 100, Parameters = TargetsMain, Category = "Beer", Description = "Gives the Target a Burning Love Beer Effect." },
+        new("Target Arkenstout [A]", "beer_arkenstout") { Price = 100, Parameters = TargetsMain, Category = "Beer", Description = "Gives the Target a Arkenstout Beer Effect." },
+        new("Target Mactera Brew [A]", "beer_mactera") { Price = 100, Parameters = TargetsMain, Category = "Beer", Description = "Gives the Target a Mactera Brew Beer Effect." },
+        new("Target Blacklock Lager [A]", "beer_blacklock") { Price = 100, Parameters = TargetsMain, Category = "Beer", Description = "Gives the Target a Blacklock Lager Beer Effect." },
+        new("Target Seasoned Moonrider [A]", "beer_moonrider") { Price = 100, Parameters = TargetsRestricted, Category = "Beer", Description = "Gives the Target a Seasoned Moonrider Beer Effect." },
 
         //Target Effects
         new("Kill Target [M]", "target_kill") { Price = 1000, Parameters = TargetsRestricted, Category = "Event", Description = "Downs The Target Dwarf" },
         new("Revive Target [M]", "target_revive") { Price = 500, Parameters = TargetsRestricted, Category = "Event", Description = "Revives The Target Dwarf" },
         new("Spawn Shield Target [M]", "target_shield") { Price = 100, Parameters = TargetsRestricted, Category = "Event", Duration = 10, Description = "Spawns a shield for the target!" },
         new("Spawn Red Sugar On Target [M]", "target_redsugar") { Price = 100, Category = "Event", Description = "Spawns red sugar on the target!" },
-        new("Spawn Host Confetti [A]", "target_confetti") { Price = 10, Category = "Host", Description = "Spawns confetti on the host!" },
+        new("Spawn Target Confetti [A]", "target_confetti") { Price = 10, Parameters =TargetsMain, Category = "Event", Description = "Spawns confetti on the target!" },
 
         //Full Team
-        new("Revive All [M]", "all_revive") { Price = 1000, Category = "Everyone", Description = "Revives the Team" },
-        new("Spawn Shield All [M]", "all_shield") { Price = 200, Category = "Everyone", Duration = 10, Description = "Spawns a shield for everyone!" },
-        new("Spawn Red Sugar All [M]", "all_redsugar") { Price = 200, Category = "Everyone", Description = "Spawns a Red Sugar Crystal for everyone!" },
+        new("Revive All [M]", "all_revive") { Price = 1000, Category = "Event", Description = "Revives the Team" },
+        new("Spawn Shield All [M]", "all_shield") { Price = 200, Category = "Event", Duration = 10, Description = "Spawns a shield for everyone!" },
+        new("Spawn Red Sugar All [M]", "all_redsugar") { Price = 200, Category = "Event", Description = "Spawns a Red Sugar Crystal for everyone!" },
 
         //Events
         new("Slomo Mode [M]", "event_slomo") { Price = 150, Category = "Event", Duration = 15, Description = "Put the game in slow motion for 15s" },
         new("Close Drop Pod Doors [A]", "event_closepod") { Price = 200, Category = "Event", Duration = 10, Description = "Close the Drop pod doors for 10s" },
         new("Spin Equipment [A]", "event_spinequipment") { Price = 300, Category = "Event", Duration = 20, Description = "Spin all platforms and pods (Supply and Drop) for 20s" },
         new("Sink Equipment [M]", "event_sinkequipment") { Price = 500, Category = "Event", Description = "Sink all platforms and pods (Supply and Drop) 3m into the ground." },
-        new("EMP All Shields [M]", "event_emp") { Price = 250, Category = "Event", Description = "EMP the entire team's shields!" }
+        new("EMP All Shields [M]", "event_emp") { Price = 250, Category = "Event", Description = "EMP the entire team's shields!" },
+        new("Shuffle All Players [M]", "event_shuffleplayers") { Price = 200, Category = "Event", Description = "Randomly shuffle all player locations! (Does not work on solo player Game)" },
+        new("Gather All Players On Target [M]", "event_gatherplayers") { Price = 200, Parameters = TargetsRestricted, Category = "Event", Description = "Randomly shuffle all player locations! (Does not work on solo player Game)" },
+        new("Drop Tactical Nuke! [M]", "event_nuke") { Price = 500, Category = "Event", Description = "Drops a Nuke on the host's location with a small warning delay!" },
 
     };
 
