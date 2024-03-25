@@ -10,9 +10,9 @@ namespace CrowdControl.Games.Packs.DeepRockGalactic;
 [UsedImplicitly]
 public class DeepRockGalactic : FileEffectPack
 {
-    public override string ReadFile => "FSD\\Mods\\CC\\output.txt"; //GameFolder + "/FSD/Mods/CC/output.txt";
-    public override string WriteFile => "FSD\\Mods\\CC\\input.txt"; //GameFolder + "/FSD/Mods/CC/input.txt";
-    public static string ReadyCheckFile = "FSD\\Mods\\CC\\connector.txt"; //GameFolder + "/FSD/Mods/CC/connector.txt";
+    public override string ReadFile => "FSD\\Mods\\CC\\output.txt";//"Z:\\SteamLibrary\\steamapps\\common\\Deep Rock Galactic\\FSD\\Mods\\CC\\output.txt";
+    public override string WriteFile => "FSD\\Mods\\CC\\input.txt"; //"Z:\\SteamLibrary\\steamapps\\common\\Deep Rock Galactic\\FSD\\Mods\\CC\\input.txt";
+    public static string ReadyCheckFile = "FSD\\Mods\\CC\\connector.txt";//"Z:\\SteamLibrary\\steamapps\\common\\Deep Rock Galactic\\FSD\\Mods\\CC\\connector.txt";
 
     public override ISimpleTCPPack.MessageFormat MessageFormat => ISimpleTCPPack.MessageFormat.CrowdControlLegacyIntermediate;
 
@@ -104,11 +104,10 @@ public class DeepRockGalactic : FileEffectPack
         new("Spawn Nesting Glyphids [M]", "custom_nestedglyphids") { Price = 300, Category = "Enemy / Custom", Description = "Spawns an Opressor, that splits into 2 Praetorians, then 4 grunts, then 8 swarmers!" },
         new("Spawn Cluster Bulk [M]", "custom_clusterbulk") { Price = 500, Category = "Enemy / Custom", Description = "Spawns a bulk that when killed drops a lot of cluster bomb explosions! Huge AoE!" },
         new("Spawn Reaper [M]", "custom_reaper") { Price = 1000, Category = "Enemy / Custom", Description = "Spawns a reaper stalker. It hunts the team for the whole mission respawning after death and getting stronger with each death!" },
+        new("Spawn Thiccbug [M]", "custom_thiccbug") { Price = 200, Category = "Enemy / Custom", Description = "Spawns a Lottbug that steals the team's gold. They can get it back if they kill it. It also has a growing slappable booty." },
 
         //Critters
-        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" },
-        new("Spawn Golden Lootbug [M]", "critter_lootbug_gold") { Price = 25, Quantity = 5, Category = "Critter", Description = "Spawns a Golden Lootbug" },
-        new("Spawn Huuli Hoarder [M]", "critter_hoarder") { Price = 100, Category = "Critter", Description = "Spawns a Huuli Hoarder" },
+        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" }, 
         new("Spawn Naedocyte Cave Cruiser [M]", "critter_cavecruiser") { Price = 5, Category = "Critter", Description = "Spawns a Cave Cruiser" },
         new("Spawn Cave Vine [M]", "critter_cavevine") { Price = 5, Category = "Critter", Description = "Spawns a Cave Vine" },
         new("Spawn Silicate Harvester [M]", "critter_harvester") { Price = 10, Category = "Critter", Description = "Spawns a Silicate Harvester" },
@@ -118,11 +117,12 @@ public class DeepRockGalactic : FileEffectPack
         //Helpful Items - Custom
         new("Give Molly a Gun! [M]", "custom_battlemolly") { Price = 200, Category = "Helpful / Custom", Description = "Spawns a minehead turret attached to each Mule / Mini-Mule!" },
         new("Spawn Pet Shredder [M]", "custom_petshredder") { Price = 200, Category = "Helpful / Custom", Description = "Spawns a friendly pet shredder with your name! (Lasts Mission Duration)" },
+        new("Boost Molly! [M]", "custom_mollybooster") { Price = 100, Category = "Helpful / Custom", Duration = 30, Description = "Makes Molly go Turbo Speed for 30s!" },
+        new("Roulettebug [M]", "custom_roulettebug") { Price = 100, Category = "Helpful / Custom", Description = "Spawn a Lootbug that spawns 1 of 10 events when it dies!" },
 
         //Helpful Items - Vanilla
         new("Spawn Minehead Sentry [M]", "helpful_battlesentry") { Price = 100, Quantity = 3, Category = "Helpful / Vanilla", Description = "Spawns a minehead turret!" },
         new("Spawn Floodlight [M]", "helpful_floodlight") { Price = 50, Category = "Helpful / Vanilla", Description = "Spawns a floodlight!" },
-        new("Spawn Jet Boots [M]", "helpful_jetboots") { Price = 100, Category = "Helpful / Vanilla", Description = "Spawns a jetboot crate!" },
         new("Spawn Resupply Pod [M]", "helpful_resupply") { Price = 100, Quantity = 2, Category = "Helpful / Vanilla", Description = "Spawns a resupply for the team!" },
 
         //Fun Effects
@@ -141,26 +141,37 @@ public class DeepRockGalactic : FileEffectPack
         new("Target Seasoned Moonrider [A]", "beer_moonrider") { Price = 100, Parameters = TargetsRestricted, Category = "Beer", Description = "Gives the Target a Seasoned Moonrider Beer Effect." },
 
         //Target Effects
-        new("Kill Target [M]", "target_kill") { Price = 1000, Parameters = TargetsRestricted, Category = "Event", Description = "Downs The Target Dwarf" },
-        new("Revive Target [M]", "target_revive") { Price = 500, Parameters = TargetsRestricted, Category = "Event", Description = "Revives The Target Dwarf" },
         new("Spawn Shield Target [M]", "target_shield") { Price = 100, Parameters = TargetsRestricted, Category = "Event", Duration = 10, Description = "Spawns a shield for the target!" },
         new("Spawn Red Sugar On Target [M]", "target_redsugar") { Price = 100, Category = "Event", Description = "Spawns red sugar on the target!" },
         new("Spawn Target Confetti [A]", "target_confetti") { Price = 10, Parameters =TargetsMain, Category = "Event", Description = "Spawns confetti on the target!" },
 
         //Full Team
-        new("Revive All [M]", "all_revive") { Price = 1000, Category = "Event", Description = "Revives the Team" },
         new("Spawn Shield All [M]", "all_shield") { Price = 200, Category = "Event", Duration = 10, Description = "Spawns a shield for everyone!" },
         new("Spawn Red Sugar All [M]", "all_redsugar") { Price = 200, Category = "Event", Description = "Spawns a Red Sugar Crystal for everyone!" },
 
         //Events
         new("Slomo Mode [M]", "event_slomo") { Price = 150, Category = "Event", Duration = 15, Description = "Put the game in slow motion for 15s" },
-        new("Close Drop Pod Doors [A]", "event_closepod") { Price = 200, Category = "Event", Duration = 10, Description = "Close the Drop pod doors for 10s" },
-        new("Spin Equipment [A]", "event_spinequipment") { Price = 300, Category = "Event", Duration = 20, Description = "Spin all platforms and pods (Supply and Drop) for 20s" },
-        new("Sink Equipment [M]", "event_sinkequipment") { Price = 500, Category = "Event", Description = "Sink all platforms and pods (Supply and Drop) 3m into the ground." },
+        new("Fastmo Mode [M]", "event_fastmo") { Price = 150, Category = "Event", Duration = 15, Description = "Put the game in fast motion for 15s" },
         new("EMP All Shields [M]", "event_emp") { Price = 250, Category = "Event", Description = "EMP the entire team's shields!" },
         new("Shuffle All Players [M]", "event_shuffleplayers") { Price = 200, Category = "Event", Description = "Randomly shuffle all player locations! (Does not work on solo player Game)" },
         new("Gather All Players On Target [M]", "event_gatherplayers") { Price = 200, Parameters = TargetsRestricted, Category = "Event", Description = "Randomly shuffle all player locations! (Does not work on solo player Game)" },
-        new("Drop Tactical Nuke! [M]", "event_nuke") { Price = 500, Category = "Event", Description = "Drops a Nuke on the host's location with a small warning delay!" },
+        new("Drop Tactical Nuke! [M]", "event_nuke") { Price = 500, Category = "Event", Description = "Drops a Nuke on the host's location with a small warning delay!", SessionCooldown = 60},
+
+        //Custom Bosses
+        new("Hydra Bulk [M]", "boss_hydrabulk") { Price = 1000, Category = "Enemy / Boss", Description = "Spawns a Boss Bulk that splits into more smaller bulks as it dies! (Until Micro Hydra Bulks)", SessionCooldown = 60}
+        //Not Finished
+        //new("Lord Pog [M]", "boss_lordpog") { Price = 750, Category = "Enemy / Boss", Description = "Spawns a large glowing Spitballer with eyes. It can teleport and spawn mini spitballers!", SessionCooldown = 60}
+
+        //Removed
+        //new("Revive All [M]", "all_revive") { Price = 1000, Category = "Event", Description = "Revives the Team" },
+        //new("Close Drop Pod Doors [A]", "event_closepod") { Price = 200, Category = "Event", Duration = 10, Description = "Close the Drop pod doors for 10s" },
+        //new("Spin Equipment [A]", "event_spinequipment") { Price = 300, Category = "Event", Duration = 20, Description = "Spin all platforms and pods (Supply and Drop) for 20s" },
+        //new("Sink Equipment [M]", "event_sinkequipment") { Price = 500, Category = "Event", Description = "Sink all platforms and pods (Supply and Drop) 3m into the ground." },
+        //new("Kill Target [M]", "target_kill") { Price = 1000, Parameters = TargetsRestricted, Category = "Event", Description = "Downs The Target Dwarf" },
+        //new("Revive Target [M]", "target_revive") { Price = 500, Parameters = TargetsRestricted, Category = "Event", Description = "Revives The Target Dwarf" },
+        //new("Spawn Golden Lootbug [M]", "critter_lootbug_gold") { Price = 25, Quantity = 5, Category = "Critter", Description = "Spawns a Golden Lootbug" },
+        //new("Spawn Huuli Hoarder [M]", "critter_hoarder") { Price = 100, Category = "Critter", Description = "Spawns a Huuli Hoarder" },
+        //new("Spawn Jet Boots [M]", "helpful_jetboots") { Price = 100, Category = "Helpful / Vanilla", Description = "Spawns a jetboot crate!" },
 
     };
 
