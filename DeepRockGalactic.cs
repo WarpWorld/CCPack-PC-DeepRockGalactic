@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using CrowdControl.Common;
 using JetBrains.Annotations;
 using ConnectorType = CrowdControl.Common.ConnectorType;
