@@ -101,7 +101,7 @@ public class DeepRockGalactic : FileEffectPack
         new("Spawn Nesting Glyphids [M]", "custom_nestedglyphids") { Price = 300, Category = "Enemy / Custom", Description = "Spawns an Opressor, that splits into 2 Praetorians, then 4 grunts, then 8 swarmers!" },
         new("Spawn Cluster Bulk [M]", "custom_clusterbulk") { Price = 500, Category = "Enemy / Custom", Description = "Spawns a bulk that when killed drops a lot of cluster bomb explosions! Huge AoE!" },
         new("Spawn Reaper [M]", "custom_reaper") { Price = 1000, Category = "Enemy / Custom", Description = "Spawns a reaper stalker. It hunts the team for the whole mission respawning after death and getting stronger with each death!" },
-        new("Spawn Thiccbug [M]", "custom_thiccbug") { Price = 200, Category = "Enemy / Custom", Description = "Spawns a Lottbug that steals the team's gold. They can get it back if they kill it. It also has a growing slappable booty." },
+        new("Spawn Thiccbug [M]", "custom_thiccbug") { Price = 200, Category = "Enemy / Custom", Description = "Spawns a Lootbug that steals the team's gold. They can get it back if they kill it. It also has a growing slappable booty." },
 
         //Critters
         new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" }, 
@@ -156,19 +156,6 @@ public class DeepRockGalactic : FileEffectPack
 
         //Custom Bosses
         new("Hydra Bulk [M]", "boss_hydrabulk") { Price = 1000, Category = "Enemy / Boss", Description = "Spawns a Boss Bulk that splits into more smaller bulks as it dies! (Until Micro Hydra Bulks)", SessionCooldown = 60}
-        //Not Finished
-        //new("Lord Pog [M]", "boss_lordpog") { Price = 750, Category = "Enemy / Boss", Description = "Spawns a large glowing Spitballer with eyes. It can teleport and spawn mini spitballers!", SessionCooldown = 60}
-
-        //Removed
-        //new("Revive All [M]", "all_revive") { Price = 1000, Category = "Event", Description = "Revives the Team" },
-        //new("Close Drop Pod Doors [A]", "event_closepod") { Price = 200, Category = "Event", Duration = 10, Description = "Close the Drop pod doors for 10s" },
-        //new("Spin Equipment [A]", "event_spinequipment") { Price = 300, Category = "Event", Duration = 20, Description = "Spin all platforms and pods (Supply and Drop) for 20s" },
-        //new("Sink Equipment [M]", "event_sinkequipment") { Price = 500, Category = "Event", Description = "Sink all platforms and pods (Supply and Drop) 3m into the ground." },
-        //new("Kill Target [M]", "target_kill") { Price = 1000, Parameters = TargetsRestricted, Category = "Event", Description = "Downs The Target Dwarf" },
-        //new("Revive Target [M]", "target_revive") { Price = 500, Parameters = TargetsRestricted, Category = "Event", Description = "Revives The Target Dwarf" },
-        //new("Spawn Golden Lootbug [M]", "critter_lootbug_gold") { Price = 25, Quantity = 5, Category = "Critter", Description = "Spawns a Golden Lootbug" },
-        //new("Spawn Huuli Hoarder [M]", "critter_hoarder") { Price = 100, Category = "Critter", Description = "Spawns a Huuli Hoarder" },
-        //new("Spawn Jet Boots [M]", "helpful_jetboots") { Price = 100, Category = "Helpful / Vanilla", Description = "Spawns a jetboot crate!" },
 
     };
 
