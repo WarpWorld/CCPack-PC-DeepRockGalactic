@@ -16,7 +16,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
     public DeepRockGalacticRequiredByAll(UserRecord player, Func<CrowdControlBlock, bool> responseHandler, Action<object> statusUpdateHandler) : base(player, responseHandler, statusUpdateHandler) { }
 
     public override Game Game { get; } = new("Deep Rock Galactic", "DeepRockGalacticRequiredByAll", "PC", ConnectorType.FileConnector);
-    
+
     //Parameters
     private readonly ParameterDef TargetsMain = new("Target Player", "targetPlayerType",
         new Parameter("Host", "1"),
@@ -44,6 +44,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Spawn Septic Spreader [M]", "grunt_lobber") { Price = 200, Category = "Enemy / Glyphid", Description = "Spawns an Septic Spreader" },
         new("Spawn Menace [M]", "grunt_menace") { Price = 150, Category = "Enemy / Glyphid", Description = "Spawns an Menace" },
         new("Spawn Exploder [M]", "grunt_exploder") { Price = 50, Quantity = 5, Category = "Enemy / Glyphid", Description = "Spawns an Exploder" },
+        new("Spawn Stalker [M]", "grunt_stalker") { Price = 250, Category = "Enemy / Glyphid", Description = "Spawns the Glyphid Stalker" }, //Season 5
         new("Spawn Bulk Detonator [M]", "grunt_bulk") { Price = 500, Category = "Enemy / Glyphid", Description = "Spawns a Bulk Detonator" },
         new("Spawn Crassus Bulk Detonator [M]", "grunt_bulk_gold") { Price = 750, Category = "Enemy / Glyphid", Description = "Spawns a Crassus Bulk Detonator" },
         new("Spawn Ghost Bulk Detonator [M]", "grunt_bulk_ghost") { Price = 1000, Category = "Enemy / Glyphid", Description = "Spawns a Ghost Bulk Detonator" },
@@ -87,9 +88,12 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Spawn BET-C (Boss) [M]", "enemy_betc") { Price = 500, Category = "Enemy / Other", Description = "Spawns a BET-C" },
         new("Spawn Cave Leech [M]", "enemy_leech") { Price = 100, Category = "Enemy / Other", Description = "Spawns a Cave Leech" },
         new("Spawn Spitball Infector [M]", "enemy_spitballer") { Price = 100, Category = "Enemy / Other", Description = "Spawns a Spitball Infector" },
+        new("Spawn Barrage Infector [M]", "enemy_barrageinfector") { Price = 150, Category = "Enemy / Other", Description = "Spawns a Barrage Infector Plant" }, //Season 5
+        new("Spawn Vartok Scale Bramble [M]", "enemy_scalebramble") { Price = 150, Category = "Enemy / Other", Description = "Spawns a Vartok Scale Bramble Plant" }, //Season 5
         new("Spawn Brood Nexus [M]", "enemy_broodnexus") { Price = 100, Category = "Enemy / Other", Description = "Spawns a Brood Nexus" },
         new("Spawn Stabber Vine [M]", "enemy_stabber") { Price = 100, Category = "Enemy / Other", Description = "Spawns a Stabber Vine" },
         new("Spawn Deeptora Wasp Nest [M]", "enemy_wasps") { Price = 50, Category = "Enemy / Other", Description = "Spawns a hive of Wasps" },
+        new("Spawn Crawler [M]", "enemy_crawler") { Price = 150, Quantity = 5, Category = "Enemy / Other", Description = "Spawns a crawler from the deep core" }, //Season 5
 
         //Enemy - Custom
         new("Spawn Hunter Grabber [M]", "custom_huntergrabber") { Price = 100, Quantity = 2, Category = "Enemy / Custom", Description = "Spawns an Invisible Fast Grabber" },
@@ -104,7 +108,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Spawn Thiccbug [M]", "sggx_thiccbug") { Price = 200, Category = "Enemy / Custom", Description = "Spawns a Lootbug that steals the team's gold. They can get it back if they kill it. It also has a growing slappable booty." },
 
         //Critters
-        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" }, 
+        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" },
         new("Spawn Naedocyte Cave Cruiser [M]", "critter_cavecruiser") { Price = 5, Category = "Critter", Description = "Spawns a Cave Cruiser" },
         new("Spawn Cave Vine [M]", "critter_cavevine") { Price = 5, Category = "Critter", Description = "Spawns a Cave Vine" },
         new("Spawn Silicate Harvester [M]", "critter_harvester") { Price = 10, Category = "Critter", Description = "Spawns a Silicate Harvester" },
@@ -203,12 +207,13 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("C4R-E Package [M]", "sggc_help_c4re") { Price = 250, Category = "Expansion / Helpful", Description = "Spawns a friendly BET-C that can shield you when you salute her!" },
         new("Drop Medic Pod [M]", "sggc_help_medicpod") { Price = 150, Category = "Expansion / Helpful", Description = "Spawns a resupply pod that instead of giving supplies has a healing aura. It has a limited charge." },
         new("Drop Shield Pod [M]", "sggc_help_shieldpod") { Price = 150, Category = "Expansion / Helpful", Description = "Spawns a resupply pod that instead of giving supplies boosts shield regen in the area. It has a limited charge." },
-        new("Drop Shield Pod [M]", "sggc_help_militarypod") { Price = 200, Category = "Expansion / Helpful", Description = "Spawns a resupply pod gives supplies and friendly shredders, as well as comes with a turret attached!" }
+        new("Drop Military Pod [M]", "sggc_help_militarypod") { Price = 200, Category = "Expansion / Helpful", Description = "Spawns a resupply pod gives supplies and friendly shredders, as well as comes with a turret attached!" },
+        new("Summon Blood Shard [M]", "sggc_help_bloodshard") { Price = 150, Category = "Expansion / Helpful", Description = "Spawns a blood shard that will revive players when they kill enough enemies." }
     };
 
     static bool IsReady()
     {
-        if(File.Exists(ReadyCheckFile))
+        if (File.Exists(ReadyCheckFile))
         {
             string readyTest = File.ReadAllText(ReadyCheckFile);
 
@@ -225,7 +230,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         {
             return false;
         }
-        
+
     }
 
 }

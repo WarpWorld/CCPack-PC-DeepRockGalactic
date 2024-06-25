@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
 using CrowdControl.Common;
 using JetBrains.Annotations;
 using ConnectorType = CrowdControl.Common.ConnectorType;
@@ -16,7 +19,7 @@ public class DeepRockGalactic : FileEffectPack
     public DeepRockGalactic(UserRecord player, Func<CrowdControlBlock, bool> responseHandler, Action<object> statusUpdateHandler) : base(player, responseHandler, statusUpdateHandler) { }
 
     public override Game Game { get; } = new("Deep Rock Galactic", "DeepRockGalactic", "PC", ConnectorType.FileConnector);
-    
+
     //Parameters
     private readonly ParameterDef TargetsMain = new("Target Player", "targetPlayerType",
         new Parameter("Host", "1"),
@@ -44,6 +47,7 @@ public class DeepRockGalactic : FileEffectPack
         new("Spawn Septic Spreader [M]", "grunt_lobber") { Price = 200, Category = "Enemy / Glyphid", Description = "Spawns an Septic Spreader" },
         new("Spawn Menace [M]", "grunt_menace") { Price = 150, Category = "Enemy / Glyphid", Description = "Spawns an Menace" },
         new("Spawn Exploder [M]", "grunt_exploder") { Price = 50, Quantity = 5, Category = "Enemy / Glyphid", Description = "Spawns an Exploder" },
+        new("Spawn Stalker [M]", "grunt_stalker") { Price = 250, Category = "Enemy / Glyphid", Description = "Spawns the Glyphid Stalker" }, //Season 5
         new("Spawn Bulk Detonator [M]", "grunt_bulk") { Price = 500, Category = "Enemy / Glyphid", Description = "Spawns a Bulk Detonator" },
         new("Spawn Crassus Bulk Detonator [M]", "grunt_bulk_gold") { Price = 750, Category = "Enemy / Glyphid", Description = "Spawns a Crassus Bulk Detonator" },
         new("Spawn Ghost Bulk Detonator [M]", "grunt_bulk_ghost") { Price = 1000, Category = "Enemy / Glyphid", Description = "Spawns a Ghost Bulk Detonator" },
@@ -51,6 +55,7 @@ public class DeepRockGalactic : FileEffectPack
         new("Spawn Arbalest (Boss) [M]", "grunt_twin_a") { Price = 500, Category = "Enemy / Glyphid", Description = "Spawns the Dreadnaught Twin Arbalest" },
         new("Spawn Lacerator (Boss) [M]", "grunt_twin_b") { Price = 500, Category = "Enemy / Glyphid", Description = "Spawns the Dreadnaught Twin Lacerator" },
         new("Spawn Hiveguard (Boss) [M]", "grunt_hiveguard") { Price = 1000, Category = "Enemy / Glyphid", Description = "Spawns the Dreadnaught Hiveguard" },
+
 
         //Enemy - Mactera
         new("Spawn Mactera Shooter [M]", "mactera_normal") { Price = 25, Quantity = 5, Category = "Enemy / Mactera", Description = "Spawns a Mactera Shooter" },
@@ -86,10 +91,13 @@ public class DeepRockGalactic : FileEffectPack
         new("Spawn Korlok Tyrant Weed (Boss) [M]", "enemy_tyrantweed") { Price = 500, Category = "Enemy / Other", Description = "Spawns a Tyrant Weed" },
         new("Spawn BET-C (Boss) [M]", "enemy_betc") { Price = 500, Category = "Enemy / Other", Description = "Spawns a BET-C" },
         new("Spawn Cave Leech [M]", "enemy_leech") { Price = 100, Category = "Enemy / Other", Description = "Spawns a Cave Leech" },
-        new("Spawn Spitball Infector [M]", "enemy_spitballer") { Price = 100, Category = "Enemy / Other", Description = "Spawns a Spitball Infector" },
+        new("Spawn Spitball Infector [M]", "enemy_spitballer") { Price = 100, Category = "Enemy / Other", Description = "Spawns a Spitball Infector Plant" },
+        new("Spawn Barrage Infector [M]", "enemy_barrageinfector") { Price = 150, Category = "Enemy / Other", Description = "Spawns a Barrage Infector Plant" }, //Season 5
+        new("Spawn Vartok Scale Bramble [M]", "enemy_scalebramble") { Price = 150, Category = "Enemy / Other", Description = "Spawns a Vartok Scale Bramble Plant" }, //Season 5
         new("Spawn Brood Nexus [M]", "enemy_broodnexus") { Price = 100, Category = "Enemy / Other", Description = "Spawns a Brood Nexus" },
         new("Spawn Stabber Vine [M]", "enemy_stabber") { Price = 100, Category = "Enemy / Other", Description = "Spawns a Stabber Vine" },
         new("Spawn Deeptora Wasp Nest [M]", "enemy_wasps") { Price = 50, Category = "Enemy / Other", Description = "Spawns a hive of Wasps" },
+        new("Spawn Crawler [M]", "enemy_crawler") { Price = 150, Quantity = 5, Category = "Enemy / Other", Description = "Spawns a crawler from the deep core" }, //Season 5
 
         //Enemy - Custom
         new("Spawn Hunter Grabber [M]", "custom_huntergrabber") { Price = 100, Quantity = 2, Category = "Enemy / Custom", Description = "Spawns an Invisible Fast Grabber" },
@@ -104,7 +112,7 @@ public class DeepRockGalactic : FileEffectPack
         new("Spawn Thiccbug [M]", "custom_thiccbug") { Price = 200, Category = "Enemy / Custom", Description = "Spawns a Lootbug that steals the team's gold. They can get it back if they kill it. It also has a growing slappable booty." },
 
         //Critters
-        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" }, 
+        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" },
         new("Spawn Naedocyte Cave Cruiser [M]", "critter_cavecruiser") { Price = 5, Category = "Critter", Description = "Spawns a Cave Cruiser" },
         new("Spawn Cave Vine [M]", "critter_cavevine") { Price = 5, Category = "Critter", Description = "Spawns a Cave Vine" },
         new("Spawn Silicate Harvester [M]", "critter_harvester") { Price = 10, Category = "Critter", Description = "Spawns a Silicate Harvester" },
@@ -161,7 +169,7 @@ public class DeepRockGalactic : FileEffectPack
 
     static bool IsReady()
     {
-        if(File.Exists(ReadyCheckFile))
+        if (File.Exists(ReadyCheckFile))
         {
             string readyTest = File.ReadAllText(ReadyCheckFile);
 
@@ -178,7 +186,7 @@ public class DeepRockGalactic : FileEffectPack
         {
             return false;
         }
-        
+
     }
 
 }
