@@ -10,16 +10,16 @@ namespace CrowdControl.Games.Packs.DeepRockGalactic;
 [UsedImplicitly]
 public class DeepRockGalactic : FileEffectPack
 {
-    public override string ReadFile => "FSD\\Mods\\CC\\output.txt";//"Z:\\SteamLibrary\\steamapps\\common\\Deep Rock Galactic\\FSD\\Mods\\CC\\output.txt";
-    public override string WriteFile => "FSD\\Mods\\CC\\input.txt"; //"Z:\\SteamLibrary\\steamapps\\common\\Deep Rock Galactic\\FSD\\Mods\\CC\\input.txt";
-    public static string ReadyCheckFile = "FSD\\Mods\\CC\\connector.txt";//"Z:\\SteamLibrary\\steamapps\\common\\Deep Rock Galactic\\FSD\\Mods\\CC\\connector.txt";
+    public override string ReadFile => "FSD\\Mods\\CC\\output.txt";
+    public override string WriteFile => "FSD\\Mods\\CC\\input.txt";
+    public static string ReadyCheckFile = "FSD\\Mods\\CC\\connector.txt";
 
     public override ISimpleTCPPack.MessageFormat MessageFormat => ISimpleTCPPack.MessageFormat.CrowdControlLegacyIntermediate;
 
     public DeepRockGalactic(UserRecord player, Func<CrowdControlBlock, bool> responseHandler, Action<object> statusUpdateHandler) : base(player, responseHandler, statusUpdateHandler) { }
 
     public override Game Game { get; } = new("Deep Rock Galactic", "DeepRockGalactic", "PC", ConnectorType.FileConnector);
-
+    
     //Parameters
     private readonly ParameterDef TargetsMain = new("Target Player", "targetPlayerType",
         new Parameter("Host", "1"),
@@ -112,7 +112,7 @@ public class DeepRockGalactic : FileEffectPack
         new("Spawn Thiccbug [M]", "custom_thiccbug") { Price = 200, Category = "Enemy / Custom", Description = "Spawns a Lootbug that steals the team's gold. They can get it back if they kill it. It also has a growing slappable booty." },
 
         //Critters
-        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" },
+        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" }, 
         new("Spawn Naedocyte Cave Cruiser [M]", "critter_cavecruiser") { Price = 5, Category = "Critter", Description = "Spawns a Cave Cruiser" },
         new("Spawn Cave Vine [M]", "critter_cavevine") { Price = 5, Category = "Critter", Description = "Spawns a Cave Vine" },
         new("Spawn Silicate Harvester [M]", "critter_harvester") { Price = 10, Category = "Critter", Description = "Spawns a Silicate Harvester" },
@@ -124,6 +124,7 @@ public class DeepRockGalactic : FileEffectPack
         new("Spawn Pet Shredder [M]", "custom_petshredder") { Price = 200, Category = "Helpful / Custom", Description = "Spawns a friendly pet shredder with your name! (Lasts Mission Duration)" },
         new("Boost Molly! [M]", "custom_mollybooster") { Price = 100, Category = "Helpful / Custom", Duration = 30, Description = "Makes Molly go Turbo Speed for 30s!" },
         new("Roulettebug [M]", "custom_roulettebug") { Price = 100, Category = "Helpful / Custom", Description = "Spawn a Lootbug that spawns 1 of 10 events when it dies!" },
+        new("Medi Battery [M]", "custom_medibattery") { Price = 250, Category = "Helpful / Custom", Description = "Spawn a Medibattery that can revive players after they get enough kills (If one exists instead add 100 kills to it's charge)." },
 
         //Helpful Items - Vanilla
         new("Spawn Minehead Sentry [M]", "helpful_battlesentry") { Price = 100, Quantity = 3, Category = "Helpful / Vanilla", Description = "Spawns a minehead turret!" },
@@ -163,13 +164,25 @@ public class DeepRockGalactic : FileEffectPack
         new("Drop Tactical Nuke! [M]", "event_nuke") { Price = 500, Category = "Event", Description = "Drops a Nuke on the host's location with a small warning delay!", SessionCooldown = 60},
 
         //Custom Bosses
-        new("Hydra Bulk [M]", "boss_hydrabulk") { Price = 1000, Category = "Enemy / Boss", Description = "Spawns a Boss Bulk that splits into more smaller bulks as it dies! (Until Micro Hydra Bulks)", SessionCooldown = 60}
+        new("Hydra Bulk [M]", "boss_hydrabulk") { Price = 1000, Category = "Enemy / Boss", Description = "Spawns a Boss Bulk that splits into more smaller bulks as it dies! (Until Micro Hydra Bulks)", SessionCooldown = 60},
+
+        //Holidays
+        //Halloween
+        new("Jaco Grunt [M]", "halloween_grunt") { Price = 25, Quantity = 5, Category = "Halloween", Description = "Spawn a Halloween themed grunt guard!" },
+        new("Jaco Shooter [M]", "halloween_shooter") { Price = 25, Quantity = 5, Category = "Halloween", Description = "Spawn a Halloween themed mactera shooter!" },
+        new("Little Ghost [M]", "halloween_shredder") { Price = 25, Quantity = 5, Category = "Halloween", Description = "Spawn a Halloween themed shredders (x2)" },
+        new("Halloween Pet [M]", "halloween_pet") { Price = 25, Parameters = TargetsRestricted, Category = "Halloween", Description = "Spawn a friendly pet shredder to guard your target!" },
+        new("Pumpkin Patch [M]", "halloween_pumpkinpatch") { Price = 100, Category = "Halloween", Description = "Spawn a pumpkin patch that spawns halloween themed enemies at random." },
+        new("Candle Lobber [M]", "halloween_candlelobber") { Price = 100, Category = "Halloween", Description = "Spawn a candle wax lobber! Careful it burns!" },
+        new("Witch Warden [M]", "halloween_witchwarden") { Price = 100, Category = "Halloween", Description = "Spawn a warden with a witchy theme and stronger magic!" },
+        new("True Slasher [M]", "halloween_trueslasher") { Price = 500, Category = "Halloween", Description = "Send an unkillable slasher glyphid in a hockey mask to hunt the team!" },
+        new("Horror [A]", "halloween_horror") { Price = 50, Category = "Halloween", Parameters = TargetsMain, Duration = 20, Description = "Send visual horrors to the target player." }
 
     };
 
     static bool IsReady()
     {
-        if (File.Exists(ReadyCheckFile))
+        if(File.Exists(ReadyCheckFile))
         {
             string readyTest = File.ReadAllText(ReadyCheckFile);
 
@@ -186,7 +199,7 @@ public class DeepRockGalactic : FileEffectPack
         {
             return false;
         }
-
+        
     }
 
 }
