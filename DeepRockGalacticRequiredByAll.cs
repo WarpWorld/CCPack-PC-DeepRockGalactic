@@ -172,7 +172,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Candle Lobber [M]", "halloween_candlelobber") { Price = 100, Category = "Halloween", Description = "Spawn a candle wax lobber! Careful it burns!" },
         new("Witch Warden [M]", "halloween_witchwarden") { Price = 100, Category = "Halloween", Description = "Spawn a warden with a witchy theme and stronger magic!" },
         new("True Slasher [M]", "halloween_trueslasher") { Price = 500, Category = "Halloween", Description = "Send an unkillable slasher glyphid in a hockey mask to hunt the team!" },
-        new("Horror [A]", "halloween_horror") { Price = 50, Category = "Halloween", Parameters = TargetsMain, Duration = 20, Description = "Send visual horrors to the target player." }
+        new("Horror [A]", "halloween_horror") { Price = 50, Category = "Halloween", Parameters = TargetsMain, Duration = 20, Description = "Send visual horrors to the target player." },
 
         //Extended Content - New Generic Enemies
         new("Spawn Frosty Exploder [M]", "sggc_enemy_frostyexploder") { Price = 100, Parameters = TargetsMain, Category = "Expansion / Enemy", Description = "Spawns an Exploder that freezes players it explodes on!" },
