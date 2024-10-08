@@ -18,17 +18,17 @@ public class DeepRockGalactic : FileEffectPack
     public override Game Game { get; } = new("Deep Rock Galactic", "DeepRockGalactic", "PC", ConnectorType.FileConnector);
     
     //Parameters
-    private readonly ParameterDef TargetsMain = new("Target Player", "targetPlayerType",
+    private static readonly ParameterDef TargetsMain = new("Target Player", "targetPlayerType",
         new Parameter("Host", "1"),
         new Parameter("Random Teammate", "2"),
         new Parameter("All", "3")
     );
-    private readonly ParameterDef TargetsRestricted = new("Target Player", "targetPlayerType",
+    private static readonly ParameterDef TargetsRestricted = new("Target Player", "targetPlayerType",
         new Parameter("Host", "1"),
         new Parameter("Random Teammate", "2")
     );
 
-    public override EffectList Effects => new List<Effect>
+    public override EffectList Effects { get; } = new List<Effect>
     {
         //Enemy - Glyphids Spawn
         new("Spawn Grunt [M]", "grunt_normal") { Price = 10, Quantity = 10, Category = "Enemy / Glyphid", Description = "Spawns a Grunt" },
