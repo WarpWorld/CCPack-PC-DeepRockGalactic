@@ -9,7 +9,6 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
 {
     public override string ReadFile => "FSD\\Mods\\CC\\output.txt";
     public override string WriteFile => "FSD\\Mods\\CC\\input.txt";
-
     public static string ReadyCheckFile = "FSD\\Mods\\CC\\connector.txt";
 
     public override ISimpleTCPPack.MessageFormat MessageFormat => ISimpleTCPPack.MessageFormat.CrowdControlLegacyIntermediate;
@@ -17,20 +16,19 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
     public DeepRockGalacticRequiredByAll(UserRecord player, Func<CrowdControlBlock, bool> responseHandler, Action<object> statusUpdateHandler) : base(player, responseHandler, statusUpdateHandler) { }
 
     public override Game Game { get; } = new("Deep Rock Galactic", "DeepRockGalacticRequiredByAll", "PC", ConnectorType.FileConnector);
-
+    
     //Parameters
-    private static readonly ParameterDef TargetsMain = new("Target Player", "targetPlayerType",
+    private readonly ParameterDef TargetsMain = new("Target Player", "targetPlayerType",
         new Parameter("Host", "1"),
         new Parameter("Random Teammate", "2"),
         new Parameter("All", "3")
     );
-
-    private static readonly ParameterDef TargetsRestricted = new("Target Player", "targetPlayerType",
+    private readonly ParameterDef TargetsRestricted = new("Target Player", "targetPlayerType",
         new Parameter("Host", "1"),
         new Parameter("Random Teammate", "2")
     );
 
-    public override EffectList Effects { get; } = new List<Effect>
+    public override EffectList Effects => new List<Effect>
     {
         //Enemy - Glyphids Spawn
         new("Spawn Grunt [M]", "grunt_normal") { Price = 10, Quantity = 10, Category = "Enemy / Glyphid", Description = "Spawns a Grunt" },
@@ -166,14 +164,14 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
 
         //Holidays
         //Halloween
-        new("Jaco Grunt [M]", "halloween_grunt") { Price = 25, Quantity = 5, Category = "Halloween", Description = "Spawn a Halloween themed grunt guard!" },
-        new("Jaco Shooter [M]", "halloween_shooter") { Price = 25, Quantity = 5, Category = "Halloween", Description = "Spawn a Halloween themed mactera shooter!" },
-        new("Little Ghost [M]", "halloween_shredder") { Price = 25, Quantity = 5, Category = "Halloween", Description = "Spawn a Halloween themed shredders (x2)" },
-        new("Halloween Pet [M]", "halloween_pet") { Price = 25, Parameters = TargetsRestricted, Category = "Halloween", Description = "Spawn a friendly pet shredder to guard your target!" },
-        new("Pumpkin Patch [M]", "halloween_pumpkinpatch") { Price = 100, Category = "Halloween", Description = "Spawn a pumpkin patch that spawns halloween themed enemies at random." },
-        new("Candle Lobber [M]", "halloween_candlelobber") { Price = 100, Category = "Halloween", Description = "Spawn a candle wax lobber! Careful it burns!" },
-        new("Witch Warden [M]", "halloween_witchwarden") { Price = 100, Category = "Halloween", Description = "Spawn a warden with a witchy theme and stronger magic!" },
-        new("True Slasher [M]", "halloween_trueslasher") { Price = 500, Category = "Halloween", Description = "Send an unkillable slasher glyphid in a hockey mask to hunt the team!" },
+        new("Jaco Grunt [M]", "x_halloween_grunt") { Price = 25, Quantity = 5, Category = "Halloween", Description = "Spawn a Halloween themed grunt guard!" },
+        new("Jaco Shooter [M]", "x_halloween_shooter") { Price = 25, Quantity = 5, Category = "Halloween", Description = "Spawn a Halloween themed mactera shooter!" },
+        new("Little Ghost [M]", "x_halloween_shredder") { Price = 25, Quantity = 5, Category = "Halloween", Description = "Spawn a Halloween themed shredders (x2)" },
+        new("Halloween Pet [M]", "x_halloween_pet") { Price = 25, Parameters = TargetsRestricted, Category = "Halloween", Description = "Spawn a friendly pet shredder to guard your target!" },
+        new("Pumpkin Patch [M]", "x_halloween_pumpkinpatch") { Price = 100, Category = "Halloween", Description = "Spawn a pumpkin patch that spawns halloween themed enemies at random." },
+        new("Candle Lobber [M]", "x_halloween_candlelobber") { Price = 100, Category = "Halloween", Description = "Spawn a candle wax lobber! Careful it burns!" },
+        new("Witch Warden [M]", "x_halloween_witchwarden") { Price = 100, Category = "Halloween", Description = "Spawn a warden with a witchy theme and stronger magic!" },
+        new("True Slasher [M]", "x_halloween_trueslasher") { Price = 500, Category = "Halloween", Description = "Send an unkillable slasher glyphid in a hockey mask to hunt the team!" },
         new("Horror [A]", "halloween_horror") { Price = 50, Category = "Halloween", Parameters = TargetsMain, Duration = 20, Description = "Send visual horrors to the target player." },
 
         //Extended Content - New Generic Enemies
@@ -192,6 +190,10 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Spawn Ninja Slasher [M]", "sggc_enemy_japan") { Price = 200, Quantity = 2, Category = "Expansion / Enemy", Description = "Spawns a slasher that can substitute and teleport!"},
         new("Spawn D4-terra [M]", "sggc_enemy_d4terra") { Price = 100, Quantity = 2, Category = "Expansion / Enemy", Description = "Spawns a D4 mactera that rolls a D4 for effect when it dies!"},
         new("Spawn D6-Bulk [M]", "sggc_enemy_d6bulk") { Price = 500, Category = "Expansion / Enemy", Description = "Spawns a Bulk that rolls a D6 on death for what it's buds will spawn!"},
+        new("Spawn Cluster Bulk [M]", "sggc_enemy_clusterb") { Price = 500, Category = "Expansion / Enemy", Description = "Spawns a Bulk that explodes into 8, then 4 more explosions! (Dangerous for low end PCs)"},
+        new("Spawn Cluster Bulk XL [M]", "sggc_enemy_clusterbxl") { Price = 600, Category = "Expansion / Enemy", Description = "Spawns a Cluster Bulk that explodes an extra 4x! (Dangerous for most PCs)"},
+        new("Spawn Cluster Bulk XXL [M]", "sggc_enemy_clusterbxxl") { Price = 700, Category = "Expansion / Enemy", Description = "Spawns a Cluster Bulk XL that explodes an extra 3x! (Dangerous for all PCs)"},
+        new("Spawn Cluster Lootbug [M]", "sggc_enemy_clusterlootbug") { Price = 50, Quantity = 3, Category = "Expansion / Enemy", Description = "Spawns a Lootbug that drops a cluster grenade on death."},
 
         //Extended Content - New Bosses
         new("EyeSore Boss [M]", "sggc_boss_eyesore") { Price = 750, Category = "Expansion / Boss", Description = "Spawns a googly eyed hive that spawns googly eyed enemies!" },
@@ -207,6 +209,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         //Extended Content - New Events
         new("Strapped Bomb [M]", "sggc_event_strappedbomb") { Price = 500, Category = "Expansion / Event", Description = "Spawns a bomb strapped to a random player. After the timer they blow up taking enemies and allies with them!" },
         new("Tunnel Bomb Landmines [M]", "sggc_event_tunnelbomb") { Price = 200, Quantity = 5, Category = "Expansion / Event", Description = "Spawns a tunnel bomb. A boxed bomb with a 5 second proximity timer! Watch Out!" },
+        new("EXTERMINATUS! [M]", "sggc_event_exterminatus") { Price = 1000, Category = "Expansion / Event", Description = "Spawns an orbital lazer strike after 20 a second warning. Wipes out everything in a massive area including the terrain. (Highly Dangerous)" },
 
         //Extended Content - Player Auras
         new("Player Aura - Beserk [M]", "sggc_aura_beserk") { Price = 100, Category = "Expansion / Player Aura", Description = "Gives a random player an aura that gives nearby dwarves beserk! (30s)" },
@@ -223,7 +226,8 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Drop Medic Pod [M]", "sggc_help_medicpod") { Price = 150, Category = "Expansion / Helpful", Description = "Spawns a resupply pod that instead of giving supplies has a healing aura. It has a limited charge." },
         new("Drop Shield Pod [M]", "sggc_help_shieldpod") { Price = 150, Category = "Expansion / Helpful", Description = "Spawns a resupply pod that instead of giving supplies boosts shield regen in the area. It has a limited charge." },
         new("Drop Military Pod [M]", "sggc_help_militarypod") { Price = 200, Category = "Expansion / Helpful", Description = "Spawns a resupply pod gives supplies and friendly shredders, as well as comes with a turret attached!" },
-        new("Summon Blood Shard [M]", "sggc_help_bloodshard") { Price = 150, Category = "Expansion / Helpful", Description = "Spawns a blood shard that will revive players when they kill enough enemies." }
+        new("Summon Blood Shard [M]", "sggc_help_bloodshard") { Price = 150, Category = "Expansion / Helpful", Description = "Spawns a blood shard that will revive players when they kill enough enemies." },
+        new("Spawn Medi-Bulk [M]", "sggc_help_medibulk") { Price = 200, Category = "Expansion / Helpful", Description = "Spawns a bulk that heals on explosion from eating too much red sugar." }
     };
 
     static bool IsReady()
