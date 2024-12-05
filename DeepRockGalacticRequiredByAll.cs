@@ -16,7 +16,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
     public DeepRockGalacticRequiredByAll(UserRecord player, Func<CrowdControlBlock, bool> responseHandler, Action<object> statusUpdateHandler) : base(player, responseHandler, statusUpdateHandler) { }
 
     public override Game Game { get; } = new("Deep Rock Galactic", "DeepRockGalacticRequiredByAll", "PC", ConnectorType.FileConnector);
-    
+
     //Parameters
     private readonly ParameterDef TargetsMain = new("Target Player", "targetPlayerType",
         new Parameter("Host", "1"),
@@ -108,7 +108,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Spawn Thiccbug [M]", "sggx_thiccbug") { Price = 200, Category = "Enemy / Custom", Description = "Spawns a Lootbug that steals the team's gold. They can get it back if they kill it. It also has a growing slappable booty." },
 
         //Critters
-        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" }, 
+        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" },
         new("Spawn Naedocyte Cave Cruiser [M]", "critter_cavecruiser") { Price = 5, Category = "Critter", Description = "Spawns a Cave Cruiser" },
         new("Spawn Cave Vine [M]", "critter_cavevine") { Price = 5, Category = "Critter", Description = "Spawns a Cave Vine" },
         new("Spawn Silicate Harvester [M]", "critter_harvester") { Price = 10, Category = "Critter", Description = "Spawns a Silicate Harvester" },
@@ -227,12 +227,39 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Drop Shield Pod [M]", "sggc_help_shieldpod") { Price = 150, Category = "Expansion / Helpful", Description = "Spawns a resupply pod that instead of giving supplies boosts shield regen in the area. It has a limited charge." },
         new("Drop Military Pod [M]", "sggc_help_militarypod") { Price = 200, Category = "Expansion / Helpful", Description = "Spawns a resupply pod gives supplies and friendly shredders, as well as comes with a turret attached!" },
         new("Summon Blood Shard [M]", "sggc_help_bloodshard") { Price = 150, Category = "Expansion / Helpful", Description = "Spawns a blood shard that will revive players when they kill enough enemies." },
-        new("Spawn Medi-Bulk [M]", "sggc_help_medibulk") { Price = 200, Category = "Expansion / Helpful", Description = "Spawns a bulk that heals on explosion from eating too much red sugar." }
+        new("Spawn Medi-Bulk [M]", "sggc_help_medibulk") { Price = 200, Category = "Expansion / Helpful", Description = "Spawns a bulk that heals on explosion from eating too much red sugar." },
+
+        //Rival Enemies
+        new("Spawn Rival Grunt [M]", "sggr_enemy_grunt") { Price = 10, Quantity = 5, Category = "Expansion / Rivals", Description = "Spawns a Custom Rival Grunt" },
+        new("Spawn Rival Exploder [M]", "sggr_enemy_exploder") { Price = 50, Quantity = 5, Category = "Expansion / Rivals", Description = "Spawns a Custom Rival Exploder using phase bombs" },
+        new("Spawn Rival Opressor [M]", "sggr_enemy_opressor") { Price = 100, Category = "Expansion / Rivals", Description = "Spawns a Custom Rival Opressor with armor and drills" },
+        new("Spawn Rival Spitter [M]", "sggr_enemy_spitter") { Price = 50, Category = "Expansion / Rivals", Description = "Spawns a Custom Rival Spitter that fires rockets!" },
+        new("Spawn Rival Swarmer [M]", "sggr_enemy_swarmer") { Price = 10, Category = "Expansion / Rivals", Description = "Spawns a Custom Rival Swarmers. They spawn in sets of 3." },
+        new("Spawn Rival Warden [M]", "sggr_enemy_warden") { Price = 100, Category = "Expansion / Rivals", Description = "Spawns a Custom Rival Warden that shields all enemis flying, rival, and glyphid." },
+        new("Spawn Rival Saw Bulk [M]", "sggr_enemy_sawbulk") { Price = 300, Category = "Expansion / Rivals", Description = "Spawns a Custom Rival Bulk with sawblade launcher. It also explodes into ripsaws on death." },
+        new("Spawn Rival Bomb Bulk [M]", "sggr_enemy_bombbulk") { Price = 300, Category = "Expansion / Rivals", Description = "Spawns a Custom Rival Bulk with lazer turrets and a phase bomb dispenser!" },
+        new("Spawn Rival Mactera [M]", "sggr_enemy_mactera") { Price = 25, Category = "Expansion / Rivals", Description = "Spawns a Custom Rival Mactera" },
+        new("Spawn Rival Trijaw [M]", "sggr_enemy_trishot") { Price = 75, Category = "Expansion / Rivals", Description = "Spawns a Custom Rival Trijaw" },
+        new("Spawn Rival Grabber [M]", "sggr_enemy_grabber") { Price = 100, Category = "Expansion / Rivals", Description = "Spawns a Custom Rival Grabber that can teleport" },
+        new("Spawn Rival Bomber [M]", "sggr_enemy_bomber") { Price = 75, Category = "Expansion / Rivals", Description = "Spawns a Custom Rival bomber that drops dangerous objects" },
+        new("Spawn Rival Light Eater [M]", "sggr_enemy_lighteater") { Price = 50, Category = "Expansion / Rivals", Description = "Spawns a Custom Enemy that eats lights. Prioritizing Scout Flares, then eating regular flares." },
+
+        //Rival Bosses
+        new("Spawn Rival Boss G4R-E [M]", "sggr_boss_gary") { Price = 400, Category = "Expansion / Rivals", Description = "Spawns a Custom Boss Nemesis called Gary." },
+        new("Spawn Rival Boss KR4K3N [M]", "sggr_boss_kraken") { Price = 750, Category = "Expansion / Rivals", Description = "Spawns a Custom Boss Omen Tower Fight!" },
+        new("Spawn Rival Boss K4R-E [M]", "sggr_boss_k4re") { Price = 300, Category = "Expansion / Rivals", Description = "Spawns a Custom Boss patrol bot that spawns protectors each phase." },
+        new("Spawn Rival Boss K4R-N [M]", "sggr_boss_k4rn") { Price = 300, Category = "Expansion / Rivals", Description = "Spawns a Custom Boss patrol bot that spawns tentacles each phase." },
+        new("Spawn Rival Drop Event [M]", "sggr_boss_gnomedrop") { Price = 750, Category = "Expansion / Rivals", Description = "Spawns a Custom Boss event! Survive until the timer / hp bar runs out!" },
+
+        //Xmas Set
+        new("Spawn Present Grunt [M]", "x_xmas_grunt") { Price = 10, Quantity = 5, Category = "Xmas", Description = "Spawns a Custom Xmas grunt wrapped in a present" },
+        new("Spawn Bulb Shooter [M]", "x_xmas_bulbshooter") { Price = 50, Category = "Xmas", Description = "Spawns a Custom mactera shooter that can freeze dwarves" },
+        new("Spawn Snowmad [M]", "x_xmas_snowmad") { Price = 250, Category = "Xmas", Description = "Spawns a custom snowman enemy that runs at players and tries to freeze them! If pinged it will be stopped temporarily." }
     };
 
     static bool IsReady()
     {
-        if(File.Exists(ReadyCheckFile))
+        if (File.Exists(ReadyCheckFile))
         {
             string readyTest = File.ReadAllText(ReadyCheckFile);
 
@@ -249,7 +276,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         {
             return false;
         }
-        
+
     }
 
 }
