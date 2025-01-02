@@ -127,6 +127,7 @@ public class DeepRockGalactic : FileEffectPack
         new("Spawn Minehead Sentry [M]", "helpful_battlesentry") { Price = 100, Quantity = 3, Category = "Helpful / Vanilla", Description = "Spawns a minehead turret!" },
         new("Spawn Floodlight [M]", "helpful_floodlight") { Price = 50, Category = "Helpful / Vanilla", Description = "Spawns a floodlight!" },
         new("Spawn Resupply Pod [M]", "helpful_resupply") { Price = 100, Quantity = 2, Category = "Helpful / Vanilla", Description = "Spawns a resupply for the team!" },
+        new("Give Jet Boots [M]", "helpful_givejetboots") { Price = 150, Category = "Helpful / Vanilla", Duration = 30, Description = "Give ALl Players jet boots for the duration. (Default 30s)" },
 
         //Fun Effects
         //Beer Effects
@@ -159,6 +160,9 @@ public class DeepRockGalactic : FileEffectPack
         new("Shuffle All Players [M]", "event_shuffleplayers") { Price = 200, Category = "Event", Description = "Randomly shuffle all player locations! (Does not work on solo player Game)" },
         new("Gather All Players On Target [M]", "event_gatherplayers") { Price = 200, Parameters = TargetsRestricted, Category = "Event", Description = "Randomly shuffle all player locations! (Does not work on solo player Game)" },
         new("Drop Tactical Nuke! [M]", "event_nuke") { Price = 500, Category = "Event", Description = "Drops a Nuke on the host's location with a small warning delay!", SessionCooldown = 60},
+        new("Close Pod Doors [A]", "event_closepod") { Price = 50, Category = "Events", Duration = 10, Description = "Closes the Drop Pod Doors for the duration (Default 10s)" },
+        new("Sink Equipment [M]", "event_sinkequipment") { Price = 50, Category = "Events", Description = "Sinks all Equipment and Pods 5m into the ground." },
+        new("Spin Equipment [A]", "event_spinequipment") { Price = 50, Category = "Events", Duration = 10, Description = "Spins all Equipment and Pods for the duration. (Default 10s)" },
 
         //Custom Bosses
         new("Hydra Bulk [M]", "boss_hydrabulk") { Price = 1000, Category = "Enemy / Boss", Description = "Spawns a Boss Bulk that splits into more smaller bulks as it dies! (Until Micro Hydra Bulks)", SessionCooldown = 60},
