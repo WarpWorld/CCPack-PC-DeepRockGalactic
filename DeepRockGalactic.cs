@@ -16,7 +16,7 @@ public class DeepRockGalactic : FileEffectPack
     public DeepRockGalactic(UserRecord player, Func<CrowdControlBlock, bool> responseHandler, Action<object> statusUpdateHandler) : base(player, responseHandler, statusUpdateHandler) { }
 
     public override Game Game { get; } = new("Deep Rock Galactic", "DeepRockGalactic", "PC", ConnectorType.FileConnector);
-    
+
     //Parameters
     private static readonly ParameterDef TargetsMain = new("Target Player", "targetPlayerType",
         new Parameter("Host", "1"),
@@ -28,7 +28,7 @@ public class DeepRockGalactic : FileEffectPack
         new Parameter("Random Teammate", "2")
     );
 
-    public override EffectList Effects { get; } = new List<Effect>
+    public override EffectList Effects => new List<Effect>
     {
         //Enemy - Glyphids Spawn
         new("Spawn Grunt [M]", "grunt_normal") { Price = 10, Quantity = 10, Category = "Enemy / Glyphid", Description = "Spawns a Grunt" },
@@ -109,7 +109,7 @@ public class DeepRockGalactic : FileEffectPack
         new("Spawn Thiccbug [M]", "custom_thiccbug") { Price = 200, Category = "Enemy / Custom", Description = "Spawns a Lootbug that steals the team's gold. They can get it back if they kill it. It also has a growing slappable booty." },
 
         //Critters
-        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" }, 
+        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" },
         new("Spawn Naedocyte Cave Cruiser [M]", "critter_cavecruiser") { Price = 5, Category = "Critter", Description = "Spawns a Cave Cruiser" },
         new("Spawn Cave Vine [M]", "critter_cavevine") { Price = 5, Category = "Critter", Description = "Spawns a Cave Vine" },
         new("Spawn Silicate Harvester [M]", "critter_harvester") { Price = 10, Category = "Critter", Description = "Spawns a Silicate Harvester" },
@@ -160,9 +160,16 @@ public class DeepRockGalactic : FileEffectPack
         new("Shuffle All Players [M]", "event_shuffleplayers") { Price = 200, Category = "Event", Description = "Randomly shuffle all player locations! (Does not work on solo player Game)" },
         new("Gather All Players On Target [M]", "event_gatherplayers") { Price = 200, Parameters = TargetsRestricted, Category = "Event", Description = "Randomly shuffle all player locations! (Does not work on solo player Game)" },
         new("Drop Tactical Nuke! [M]", "event_nuke") { Price = 500, Category = "Event", Description = "Drops a Nuke on the host's location with a small warning delay!", SessionCooldown = 60},
-        new("Close Pod Doors [A]", "event_closepod") { Price = 50, Category = "Events", Duration = 10, Description = "Closes the Drop Pod Doors for the duration (Default 10s)" },
-        new("Sink Equipment [M]", "event_sinkequipment") { Price = 50, Category = "Events", Description = "Sinks all Equipment and Pods 5m into the ground." },
-        new("Spin Equipment [A]", "event_spinequipment") { Price = 50, Category = "Events", Duration = 10, Description = "Spins all Equipment and Pods for the duration. (Default 10s)" },
+        new("Close Pod Doors [A]", "event_closepod") { Price = 50, Category = "Event", Duration = 10, Description = "Closes the Drop Pod Doors for the duration (Default 10s)" },
+        new("Sink Equipment [M]", "event_sinkequipment") { Price = 50, Category = "Event", Description = "Sinks all Equipment and Pods 5m into the ground." },
+        new("Spin Equipment [A]", "event_spinequipment") { Price = 50, Category = "Event", Duration = 10, Description = "Spins all Equipment and Pods for the duration. (Default 10s)" },
+        new("Open Crevasse [M]", "event_env_crevasse") { Price = 100, Category = "Event", Description = "Open a Crevasse under the host!" },
+        new("Open Crevasse XL [M]", "event_env_crevasse_xl") { Price = 200, Category = "Event", Description = "Open a Very Large Crevasse under the host!" },
+        new("Open Crevasse XXL [M]", "event_env_crevasse_xxl") { Price = 400, Category = "Event", Description = "Open up the fabric of Hoxxes under the host!" },
+        new("Spawn Frost Geyser [M]", "event_geyser_frost") { Price = 75, Category = "Event", Description = "Open up a Geyser that shoowts freezing air." },
+        new("Spawn Air Geyser [M]", "event_geyser_air") { Price = 75, Category = "Event", Description = "Open up a Geyser that shoots bursts of air to launch dwarves." },
+        new("Spawn Lava Geyser [M]", "event_geyser_lava") { Price = 75, Category = "Event", Description = "Open up a Geyser that shoots hot magma." },
+        new("Display Popup Meme [A]", "event_popup_meme") { Price = 100, Category = "Event", Description = "Open up a Popup Meme on the host that they must close or wait 15s for it to close." },
 
         //Custom Bosses
         new("Hydra Bulk [M]", "boss_hydrabulk") { Price = 1000, Category = "Enemy / Boss", Description = "Spawns a Boss Bulk that splits into more smaller bulks as it dies! (Until Micro Hydra Bulks)", SessionCooldown = 60},
@@ -183,7 +190,7 @@ public class DeepRockGalactic : FileEffectPack
 
     static bool IsReady()
     {
-        if(File.Exists(ReadyCheckFile))
+        if (File.Exists(ReadyCheckFile))
         {
             string readyTest = File.ReadAllText(ReadyCheckFile);
 
@@ -200,7 +207,7 @@ public class DeepRockGalactic : FileEffectPack
         {
             return false;
         }
-        
+
     }
 
 }
