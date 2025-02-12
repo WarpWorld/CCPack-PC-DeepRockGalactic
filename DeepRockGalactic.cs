@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
 using CrowdControl.Common;
 using JetBrains.Annotations;
 using ConnectorType = CrowdControl.Common.ConnectorType;
@@ -10,20 +13,21 @@ public class DeepRockGalactic : FileEffectPack
     public override string ReadFile => "FSD\\Mods\\CC\\output.txt";
     public override string WriteFile => "FSD\\Mods\\CC\\input.txt";
     public static string ReadyCheckFile = "FSD\\Mods\\CC\\connector.txt";
+    public static string GameStateFile = "FSD\\Mods\\CC\\gamestate.txt";
 
     public override ISimpleTCPPack.MessageFormat MessageFormat => ISimpleTCPPack.MessageFormat.CrowdControlLegacyIntermediate;
 
     public DeepRockGalactic(UserRecord player, Func<CrowdControlBlock, bool> responseHandler, Action<object> statusUpdateHandler) : base(player, responseHandler, statusUpdateHandler) { }
 
     public override Game Game { get; } = new("Deep Rock Galactic", "DeepRockGalactic", "PC", ConnectorType.FileConnector);
-
+    
     //Parameters
-    private static readonly ParameterDef TargetsMain = new("Target Player", "targetPlayerType",
+    private readonly ParameterDef TargetsMain = new("Target Player", "targetPlayerType",
         new Parameter("Host", "1"),
         new Parameter("Random Teammate", "2"),
         new Parameter("All", "3")
     );
-    private static readonly ParameterDef TargetsRestricted = new("Target Player", "targetPlayerType",
+    private readonly ParameterDef TargetsRestricted = new("Target Player", "targetPlayerType",
         new Parameter("Host", "1"),
         new Parameter("Random Teammate", "2")
     );
@@ -109,7 +113,7 @@ public class DeepRockGalactic : FileEffectPack
         new("Spawn Thiccbug [M]", "custom_thiccbug") { Price = 200, Category = "Enemy / Custom", Description = "Spawns a Lootbug that steals the team's gold. They can get it back if they kill it. It also has a growing slappable booty." },
 
         //Critters
-        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" },
+        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" }, 
         new("Spawn Naedocyte Cave Cruiser [M]", "critter_cavecruiser") { Price = 5, Category = "Critter", Description = "Spawns a Cave Cruiser" },
         new("Spawn Cave Vine [M]", "critter_cavevine") { Price = 5, Category = "Critter", Description = "Spawns a Cave Vine" },
         new("Spawn Silicate Harvester [M]", "critter_harvester") { Price = 10, Category = "Critter", Description = "Spawns a Silicate Harvester" },
@@ -170,6 +174,7 @@ public class DeepRockGalactic : FileEffectPack
         new("Spawn Air Geyser [M]", "event_geyser_air") { Price = 75, Category = "Event", Description = "Open up a Geyser that shoots bursts of air to launch dwarves." },
         new("Spawn Lava Geyser [M]", "event_geyser_lava") { Price = 75, Category = "Event", Description = "Open up a Geyser that shoots hot magma." },
         new("Display Popup Meme [A]", "event_popup_meme") { Price = 100, Category = "Event", Description = "Open up a Popup Meme on the host that they must close or wait 15s for it to close." },
+        new("Confetti Everyone! [A]", "event_confetti_all") { Price = 10, Category = "Event", Description = "Pop some confetti on all players :D" },
 
         //Custom Bosses
         new("Hydra Bulk [M]", "boss_hydrabulk") { Price = 1000, Category = "Enemy / Boss", Description = "Spawns a Boss Bulk that splits into more smaller bulks as it dies! (Until Micro Hydra Bulks)", SessionCooldown = 60},
@@ -184,13 +189,16 @@ public class DeepRockGalactic : FileEffectPack
         new("Candle Lobber [M]", "halloween_candlelobber") { Price = 100, Category = "Halloween", Description = "Spawn a candle wax lobber! Careful it burns!" },
         new("Witch Warden [M]", "halloween_witchwarden") { Price = 100, Category = "Halloween", Description = "Spawn a warden with a witchy theme and stronger magic!" },
         new("True Slasher [M]", "halloween_trueslasher") { Price = 500, Category = "Halloween", Description = "Send an unkillable slasher glyphid in a hockey mask to hunt the team!" },
-        new("Horror [A]", "halloween_horror") { Price = 50, Category = "Halloween", Parameters = TargetsMain, Duration = 20, Description = "Send visual horrors to the target player." }
+        new("Horror [A]", "halloween_horror") { Price = 50, Category = "Halloween", Parameters = TargetsMain, Duration = 20, Description = "Send visual horrors to the target player." },
+
+        //CC Special
+        new("Hype Train", "event-hype-train") {}
 
     };
 
     static bool IsReady()
     {
-        if (File.Exists(ReadyCheckFile))
+        if(File.Exists(ReadyCheckFile))
         {
             string readyTest = File.ReadAllText(ReadyCheckFile);
 
@@ -207,7 +215,28 @@ public class DeepRockGalactic : FileEffectPack
         {
             return false;
         }
+        
+    }
 
+    protected override GameState GetGameState()
+    {
+        if (File.Exists(GameStateFile))
+        {
+            string fileTest = File.ReadAllText(GameStateFile);
+
+            if (String.IsNullOrEmpty(fileTest))
+            {
+                return GameState.Unknown;
+            }
+            else
+            {
+                return GameState.Ready;
+            }
+        }
+        else
+        {
+            return GameState.Unknown;
+        }
     }
 
 }
