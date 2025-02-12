@@ -10,13 +10,14 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
     public override string ReadFile => "FSD\\Mods\\CC\\output.txt";
     public override string WriteFile => "FSD\\Mods\\CC\\input.txt";
     public static string ReadyCheckFile = "FSD\\Mods\\CC\\connector.txt";
+    public static string GameStateFile = "FSD\\Mods\\CC\\gamestate.txt";
 
     public override ISimpleTCPPack.MessageFormat MessageFormat => ISimpleTCPPack.MessageFormat.CrowdControlLegacyIntermediate;
 
     public DeepRockGalacticRequiredByAll(UserRecord player, Func<CrowdControlBlock, bool> responseHandler, Action<object> statusUpdateHandler) : base(player, responseHandler, statusUpdateHandler) { }
 
     public override Game Game { get; } = new("Deep Rock Galactic", "DeepRockGalacticRequiredByAll", "PC", ConnectorType.FileConnector);
-
+    
     //Parameters
     private readonly ParameterDef TargetsMain = new("Target Player", "targetPlayerType",
         new Parameter("Host", "1"),
@@ -108,7 +109,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Spawn Thiccbug [M]", "sggx_thiccbug") { Price = 200, Category = "Enemy / Custom", Description = "Spawns a Lootbug that steals the team's gold. They can get it back if they kill it. It also has a growing slappable booty." },
 
         //Critters
-        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" },
+        new("Spawn Lootbug [M]", "critter_lootbug") { Price = 10, Quantity = 10, Category = "Critter", Description = "Spawns a Lootbug" }, 
         new("Spawn Naedocyte Cave Cruiser [M]", "critter_cavecruiser") { Price = 5, Category = "Critter", Description = "Spawns a Cave Cruiser" },
         new("Spawn Cave Vine [M]", "critter_cavevine") { Price = 5, Category = "Critter", Description = "Spawns a Cave Vine" },
         new("Spawn Silicate Harvester [M]", "critter_harvester") { Price = 10, Category = "Critter", Description = "Spawns a Silicate Harvester" },
@@ -169,6 +170,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Spawn Air Geyser [M]", "event_geyser_air") { Price = 75, Category = "Event", Description = "Open up a Geyser that shoots bursts of air to launch dwarves." },
         new("Spawn Lava Geyser [M]", "event_geyser_lava") { Price = 75, Category = "Event", Description = "Open up a Geyser that shoots hot magma." },
         new("Display Popup Meme [A]", "event_popup_meme") { Price = 100, Category = "Event", Description = "Open up a Popup Meme on the host that they must close or wait 15s for it to close." },
+        new("Confetti Everyone! [A]", "event_confetti_all") { Price = 10, Category = "Event", Description = "Pop some confetti on all players :D" },
 
         //Custom Bosses
         new("Hydra Bulk Boss [M]", "sggx_hydrabulk") { Price = 1000, Category = "Enemy / Boss", Description = "Spawns a Boss Bulk that splits into more smaller bulks as it dies! (Until Micro Hydra Bulks)", SessionCooldown = 60},
@@ -265,12 +267,15 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         //Xmas Set
         new("Spawn Present Grunt [M]", "x_xmas_grunt") { Price = 10, Quantity = 5, Category = "Xmas", Description = "Spawns a Custom Xmas grunt wrapped in a present" },
         new("Spawn Bulb Shooter [M]", "x_xmas_bulbshooter") { Price = 50, Category = "Xmas", Description = "Spawns a Custom mactera shooter that can freeze dwarves" },
-        new("Spawn Snowmad [M]", "x_xmas_snowmad") { Price = 250, Category = "Xmas", Description = "Spawns a custom snowman enemy that runs at players and tries to freeze them! If pinged it will be stopped temporarily." }
+        new("Spawn Snowmad [M]", "x_xmas_snowmad") { Price = 250, Category = "Xmas", Description = "Spawns a custom snowman enemy that runs at players and tries to freeze them! If pinged it will be stopped temporarily." },
+
+        //CC Special
+        new("Hype Train", "event-hype-train") {}
     };
 
     static bool IsReady()
     {
-        if (File.Exists(ReadyCheckFile))
+        if(File.Exists(ReadyCheckFile))
         {
             string readyTest = File.ReadAllText(ReadyCheckFile);
 
@@ -287,7 +292,28 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         {
             return false;
         }
+        
+    }
 
+    protected override GameState GetGameState()
+    {
+        if (File.Exists(GameStateFile))
+        {
+            string fileTest = File.ReadAllText(GameStateFile);
+
+            if (String.IsNullOrEmpty(fileTest))
+            {
+                return GameState.Unknown;
+            }
+            else
+            {
+                return GameState.Ready;
+            }
+        }
+        else
+        {
+            return GameState.Unknown;
+        }
     }
 
 }
