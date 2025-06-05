@@ -191,6 +191,20 @@ public class DeepRockGalactic : FileEffectPack
         new("True Slasher [M]", "halloween_trueslasher") { Price = 500, Category = "Halloween", Description = "Send an unkillable slasher glyphid in a hockey mask to hunt the team!" },
         new("Horror [A]", "halloween_horror") { Price = 50, Category = "Halloween", Parameters = TargetsMain, Duration = 20, Description = "Send visual horrors to the target player." },
 
+        //Xmas
+        new("Present [M]", "xmas_gift") { Price = 100, Category = "Xmas", Description = "Drop a Present for the Player! (Could be good or bad)" },
+
+        //Tweek MC
+        new("Random Bad Line [A]", "tmc_rand_bad") { Price = 25, Category = "Tweek Mission Control", Description = "Tweek MC sends a bad news line" },
+        new("Random Good Line [A]", "tmc_rand_good") { Price = 25, Category = "Tweek Mission Control", Description = "Tweek MC sends a good news line" },
+        new("Random Neutral Line [A]", "tmc_rand_neutral") { Price = 25, Category = "Tweek Mission Control", Description = "Tweek MC sends a neutral news line" },
+        new("Praise Streamer [A]", "tmc_praise") { Price = 25, Category = "Tweek Mission Control", Description = "Tweek MC praises the streamer!" },
+        new("Insult Streamer [A]", "tmc_insult") { Price = 25, Category = "Tweek Mission Control", Description = "Tweek MC insults the streamer" },
+        new("Warning [A]", "tmc_shanked") { Price = 25, Category = "Tweek Mission Control", Description = "Tweek MC warns the streamer to not get shanked" },
+        new("Electric Boogaloo [A]", "tmc_special2") { Price = 25, Category = "Tweek Mission Control", Description = "Tweek MC announces Special 2, electric boogaloo" },
+        new("Rock and Stone! [A]", "tmc_rockandstone") { Price = 25, Category = "Tweek Mission Control", Description = "Tweek MC announces a Rock and Stone cheer!" },
+        new("Xmas Song [A]", "tmc_xmas_song") { Price = 25, Category = "Tweek Mission Control", Description = "Tweek MC sings a xmas song poorly" },
+
         //CC Special
         new("Hype Train", "event-hype-train") {}
 
