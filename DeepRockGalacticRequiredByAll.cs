@@ -12,7 +12,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
     public static string ReadyCheckFile = "FSD\\Mods\\CC\\connector.txt";
     public static string GameStateFile = "FSD\\Mods\\CC\\gamestate.txt";
 
-    public override ISimpleTCPPack.MessageFormat MessageFormat => ISimpleTCPPack.MessageFormat.CrowdControlLegacyIntermediate;
+    public override ISimpleTCPPack.MessageFormatType MessageFormat => ISimpleTCPPack.MessageFormatType.CrowdControlLegacyIntermediate;
 
     public DeepRockGalacticRequiredByAll(UserRecord player, Func<CrowdControlBlock, bool> responseHandler, Action<object> statusUpdateHandler) : base(player, responseHandler, statusUpdateHandler) { }
 

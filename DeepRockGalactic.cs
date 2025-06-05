@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using CrowdControl.Common;
 using JetBrains.Annotations;
 using ConnectorType = CrowdControl.Common.ConnectorType;
@@ -15,7 +12,7 @@ public class DeepRockGalactic : FileEffectPack
     public static string ReadyCheckFile = "FSD\\Mods\\CC\\connector.txt";
     public static string GameStateFile = "FSD\\Mods\\CC\\gamestate.txt";
 
-    public override ISimpleTCPPack.MessageFormat MessageFormat => ISimpleTCPPack.MessageFormat.CrowdControlLegacyIntermediate;
+    public override ISimpleTCPPack.MessageFormatType MessageFormat => ISimpleTCPPack.MessageFormatType.CrowdControlLegacyIntermediate;
 
     public DeepRockGalactic(UserRecord player, Func<CrowdControlBlock, bool> responseHandler, Action<object> statusUpdateHandler) : base(player, responseHandler, statusUpdateHandler) { }
 
