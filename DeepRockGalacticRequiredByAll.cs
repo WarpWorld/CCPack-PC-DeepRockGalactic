@@ -12,7 +12,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
     public static string ReadyCheckFile = "FSD\\Mods\\CC\\connector.txt";
     public static string GameStateFile = "FSD\\Mods\\CC\\gamestate.txt";
 
-    public override ISimpleTCPPack.MessageFormatType MessageFormat => ISimpleTCPPack.MessageFormatType.CrowdControlLegacyIntermediate;
+    //public override ISimpleTCPPack.MessageFormat MessageFormat => ISimpleTCPPack.MessageFormat.CrowdControlLegacyIntermediate;
 
     public DeepRockGalacticRequiredByAll(UserRecord player, Func<CrowdControlBlock, bool> responseHandler, Action<object> statusUpdateHandler) : base(player, responseHandler, statusUpdateHandler) { }
 
@@ -171,6 +171,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Spawn Lava Geyser [M]", "event_geyser_lava") { Price = 75, Category = "Event", Description = "Open up a Geyser that shoots hot magma." },
         new("Display Popup Meme [A]", "event_popup_meme") { Price = 100, Category = "Event", Description = "Open up a Popup Meme on the host that they must close or wait 15s for it to close." },
         new("Confetti Everyone! [A]", "event_confetti_all") { Price = 10, Category = "Event", Description = "Pop some confetti on all players :D" },
+        new("Gatcha Beer [A]", "event_gatchabeer") { Price = 100, Category = "Event", Duration = 30, Description = "Spawns a Gatcha loot beer on screen. Gives the players the result for the duration." },
 
         //Custom Bosses
         new("Hydra Bulk Boss [M]", "sggx_hydrabulk") { Price = 1000, Category = "Enemy / Boss", Description = "Spawns a Boss Bulk that splits into more smaller bulks as it dies! (Until Micro Hydra Bulks)", SessionCooldown = 60},
@@ -269,6 +270,10 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Spawn Bulb Shooter [M]", "x_xmas_bulbshooter") { Price = 50, Category = "Xmas", Description = "Spawns a Custom mactera shooter that can freeze dwarves" },
         new("Spawn Snowmad [M]", "x_xmas_snowmad") { Price = 250, Category = "Xmas", Description = "Spawns a custom snowman enemy that runs at players and tries to freeze them! If pinged it will be stopped temporarily." },
         new("Present [M]", "xmas_gift") { Price = 100, Category = "Xmas", Description = "Drop a Present for the Player! (Could be good or bad)" },
+
+        //Pride Month
+        new("Pride Power [A]", "pride_buff") { Price = 50, Category = "Pride", Duration = 30, Description = "All players move faster and shoot rainbows out of their butts for the duration." },
+        new("Seeing Rainbows [M]", "pride_vision") { Price = 50, Category = "Pride", Duration = 60, Description = "All Glyphid enemies get retextured with rainbows for the next minute." },
 
         //Tweek MC
         new("Random Bad Line [A]", "tmc_rand_bad") { Price = 25, Category = "Tweek Mission Control", Description = "Tweek MC sends a bad news line" },
