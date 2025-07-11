@@ -104,7 +104,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Spawn Egg Menace [M]", "custom_eggmenace") { Price = 300, Category = "Enemy / Custom", Description = "Spawns a menace that shoots explosive and phermoned swarmer eggs!" },
         new("Spawn Wonky Grunts [M]", "custom_wonkygrunts") { Price = 50, Quantity = 10, Category = "Enemy / Custom", Description = "Spawns a random slasher or guard glyphid with randomized x y z dimensions" },
         new("Spawn Nesting Glyphids [M]", "custom_nestedglyphids") { Price = 300, Category = "Enemy / Custom", Description = "Spawns an Opressor, that splits into 2 Praetorians, then 4 grunts, then 8 swarmers!" },
-        new("Spawn Cluster Bulk [M]", "custom_clusterbulk") { Price = 500, Category = "Enemy / Custom", Description = "Spawns a bulk that when killed drops a lot of cluster bomb explosions! Huge AoE!" },
+        //new("Spawn Cluster Bulk [M]", "custom_clusterbulk") { Price = 500, Category = "Enemy / Custom", Description = "Spawns a bulk that when killed drops a lot of cluster bomb explosions! Huge AoE!" },
         new("Spawn Reaper [M]", "sggx_reaper") { Price = 1000, Category = "Enemy / Custom", Description = "Spawns a reaper slasher. It hunts the team for the whole mission respawning after death and getting stronger with each death!" },
         new("Spawn Thiccbug [M]", "sggx_thiccbug") { Price = 200, Category = "Enemy / Custom", Description = "Spawns a Lootbug that steals the team's gold. They can get it back if they kill it. It also has a growing slappable booty." },
 
@@ -172,6 +172,8 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Display Popup Meme [A]", "event_popup_meme") { Price = 100, Category = "Event", Description = "Open up a Popup Meme on the host that they must close or wait 15s for it to close." },
         new("Confetti Everyone! [A]", "event_confetti_all") { Price = 10, Category = "Event", Description = "Pop some confetti on all players :D" },
         new("Gatcha Beer [A]", "event_gatchabeer") { Price = 100, Category = "Event", Duration = 30, Description = "Spawns a Gatcha loot beer on screen. Gives the players the result for the duration." },
+        new("Grow All Players [A]", "all_growplayers") { Price = 50, Duration = 30, Category = "Event", Description = "Grow Players to double size for the duration." },
+        new("Shrink All Players [A]", "all_shrinkplayers") { Price = 50, Duration = 30, Category = "Event", Description = "Grow Players to 1/3 size for the duration." },
 
         //Custom Bosses
         new("Hydra Bulk Boss [M]", "sggx_hydrabulk") { Price = 1000, Category = "Enemy / Boss", Description = "Spawns a Boss Bulk that splits into more smaller bulks as it dies! (Until Micro Hydra Bulks)", SessionCooldown = 60},

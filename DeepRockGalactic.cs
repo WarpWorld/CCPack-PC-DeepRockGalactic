@@ -176,6 +176,8 @@ public class DeepRockGalactic : FileEffectPack
         new("Display Popup Meme [A]", "event_popup_meme") { Price = 100, Category = "Event", Description = "Open up a Popup Meme on the host that they must close or wait 15s for it to close." },
         new("Confetti Everyone! [A]", "event_confetti_all") { Price = 10, Category = "Event", Description = "Pop some confetti on all players :D" },
         new("Gatcha Beer [A]", "event_gatchabeer") { Price = 100, Category = "Event", Duration = 30, Description = "Spawns a Gatcha loot beer on screen. Gives the players the result for the duration." },
+        new("Grow All Players [A]", "all_growplayers") { Price = 50, Duration = 30, Category = "Event", Description = "Grow Players to double size for the duration." },
+        new("Shrink All Players [A]", "all_shrinkplayers") { Price = 50, Duration = 30, Category = "Event", Description = "Grow Players to 1/3 size for the duration." },
 
         //Custom Bosses
         new("Hydra Bulk [M]", "boss_hydrabulk") { Price = 1000, Category = "Enemy / Boss", Description = "Spawns a Boss Bulk that splits into more smaller bulks as it dies! (Until Micro Hydra Bulks)", SessionCooldown = 60},
