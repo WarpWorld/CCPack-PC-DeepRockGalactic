@@ -148,16 +148,16 @@ public class DeepRockGalactic : FileEffectPack
         new("Target Blacklock Lager [A]", "beer_blacklock") { Price = 100, Parameters = TargetsMain, Category = "Beer", Description = "Gives the Target a Blacklock Lager Beer Effect." },
         new("Target Seasoned Moonrider [A]", "beer_moonrider") { Price = 100, Parameters = TargetsRestricted, Category = "Beer", Description = "Gives the Target a Seasoned Moonrider Beer Effect." },
 
-        //Target Effects
+        //Events - Target Effects
         new("Spawn Shield Target [M]", "target_shield") { Price = 100, Parameters = TargetsRestricted, Category = "Event", Duration = 10, Description = "Spawns a shield for the target!" },
         new("Spawn Red Sugar On Target [M]", "target_redsugar") { Price = 100, Category = "Event", Description = "Spawns red sugar on the target!" },
-        new("Spawn Target Confetti [A]", "target_confetti") { Price = 10, Parameters =TargetsMain, Category = "Event", Description = "Spawns confetti on the target!" },
+        new("Spawn Target Confetti [A]", "target_confetti") { Price = 10, Parameters = TargetsMain, Category = "Event", Description = "Spawns confetti on the target!" },
 
-        //Full Team
+        //Events - Full Team
         new("Spawn Shield All [M]", "all_shield") { Price = 200, Category = "Event", Duration = 10, Description = "Spawns a shield for everyone!" },
         new("Spawn Red Sugar All [M]", "all_redsugar") { Price = 200, Category = "Event", Description = "Spawns a Red Sugar Crystal for everyone!" },
 
-        //Events
+        //Events - Other
         new("Slomo Mode [M]", "event_slomo") { Price = 150, Category = "Event", Duration = 15, Description = "Put the game in slow motion for 15s" },
         new("Fastmo Mode [M]", "event_fastmo") { Price = 150, Category = "Event", Duration = 15, Description = "Put the game in fast motion for 15s" },
         new("EMP All Shields [M]", "event_emp") { Price = 250, Category = "Event", Description = "EMP the entire team's shields!" },
@@ -178,6 +178,8 @@ public class DeepRockGalactic : FileEffectPack
         new("Gatcha Beer [A]", "event_gatchabeer") { Price = 100, Category = "Event", Duration = 30, Description = "Spawns a Gatcha loot beer on screen. Gives the players the result for the duration." },
         new("Grow All Players [A]", "all_growplayers") { Price = 50, Duration = 30, Category = "Event", Description = "Grow Players to double size for the duration." },
         new("Shrink All Players [A]", "all_shrinkplayers") { Price = 50, Duration = 30, Category = "Event", Description = "Grow Players to 1/3 size for the duration." },
+        new("Down Target Player [A]", "event_killtarget") { Price = 2550, Parameters = TargetsMain, Category = "Event", Description = "Down a target player." },
+        new("Revive Target Player [A]", "event_revivetarget") { Price = 150, Parameters = TargetsMain, Category = "Event", Description = "Revive a Target player (if downed), otherwise revive a random player." },
 
         //Custom Bosses
         new("Hydra Bulk [M]", "boss_hydrabulk") { Price = 1000, Category = "Enemy / Boss", Description = "Spawns a Boss Bulk that splits into more smaller bulks as it dies! (Until Micro Hydra Bulks)", SessionCooldown = 60},
