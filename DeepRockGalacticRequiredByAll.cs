@@ -118,7 +118,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
 
         //Helpful Items - Custom
         new("Give Molly a Gun! [M]", "custom_battlemolly") { Price = 200, Category = "Helpful / Custom", Description = "Spawns a minehead turret attached to each Mule / Mini-Mule!" },
-        new("Spawn Pet Shredder [M]", "custom_petshredder") { Price = 200, Category = "Helpful / Custom", Description = "Spawns a friendly pet shredder with your name! (Lasts Mission Duration)" },
+        new("Spawn Pet Shredder [M]", "custom_petshredder") { Price = 50, Category = "Helpful / Custom", Description = "Spawns a friendly pet shredder with your name! (Lasts Mission Duration)" },
         new("Boost Molly! [M]", "custom_mollybooster") { Price = 100, Category = "Helpful / Custom", Duration = 30, Description = "Makes Molly go Turbo Speed for 30s!" },
         new("Roulettebug [M]", "custom_roulettebug") { Price = 100, Category = "Helpful / Custom", Description = "Spawn a Lootbug that spawns 1 of 10 events when it dies!" },
         new("Medi Battery [M]", "custom_medibattery") { Price = 250, Category = "Helpful / Custom", Description = "Spawn a Medibattery that can revive players after they get enough kills (If one exists instead add 100 kills to it's charge)." },
@@ -144,16 +144,16 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Target Blacklock Lager [A]", "beer_blacklock") { Price = 100, Parameters = TargetsMain, Category = "Beer", Description = "Gives the Target a Blacklock Lager Beer Effect." },
         new("Target Seasoned Moonrider [A]", "beer_moonrider") { Price = 100, Parameters = TargetsRestricted, Category = "Beer", Description = "Gives the Target a Seasoned Moonrider Beer Effect." },
 
-        //Target Effects
+        //Events - Target Effects
         new("Spawn Shield Target [M]", "target_shield") { Price = 100, Parameters = TargetsRestricted, Category = "Event", Duration = 10, Description = "Spawns a shield for the target!" },
         new("Spawn Red Sugar On Target [M]", "target_redsugar") { Price = 100, Category = "Event", Description = "Spawns red sugar on the target!" },
         new("Spawn Target Confetti [A]", "target_confetti") { Price = 10, Parameters =TargetsMain, Category = "Event", Description = "Spawns confetti on the target!" },
 
-        //Full Team
+        //Events - Full Team
         new("Spawn Shield All [M]", "all_shield") { Price = 200, Category = "Event", Duration = 10, Description = "Spawns a shield for everyone!" },
         new("Spawn Red Sugar All [M]", "all_redsugar") { Price = 200, Category = "Event", Description = "Spawns a Red Sugar Crystal for everyone!" },
 
-        //Events
+        //Events - Other
         new("Slomo Mode [M]", "event_slomo") { Price = 150, Category = "Event", Duration = 15, Description = "Put the game in slow motion for 15s" },
         new("Fastmo Mode [M]", "event_fastmo") { Price = 150, Category = "Event", Duration = 15, Description = "Put the game in fast motion for 15s" },
         new("EMP All Shields [M]", "event_emp") { Price = 250, Category = "Event", Description = "EMP the entire team's shields!" },
@@ -174,6 +174,8 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Gatcha Beer [A]", "event_gatchabeer") { Price = 100, Category = "Event", Duration = 30, Description = "Spawns a Gatcha loot beer on screen. Gives the players the result for the duration." },
         new("Grow All Players [A]", "all_growplayers") { Price = 50, Duration = 30, Category = "Event", Description = "Grow Players to double size for the duration." },
         new("Shrink All Players [A]", "all_shrinkplayers") { Price = 50, Duration = 30, Category = "Event", Description = "Grow Players to 1/3 size for the duration." },
+        new("Down Target Player [A]", "event_killtarget") { Price = 2550, Parameters = TargetsMain, Category = "Event", Description = "Down a target player." },
+        new("Revive Target Player [A]", "event_revivetarget") { Price = 150, Parameters = TargetsMain, Category = "Event", Description = "Revive a Target player (if downed), otherwise revive a random player." },
 
         //Custom Bosses
         new("Hydra Bulk Boss [M]", "sggx_hydrabulk") { Price = 1000, Category = "Enemy / Boss", Description = "Spawns a Boss Bulk that splits into more smaller bulks as it dies! (Until Micro Hydra Bulks)", SessionCooldown = 60},
@@ -183,7 +185,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Jaco Grunt [M]", "x_halloween_grunt") { Price = 25, Quantity = 5, Category = "Halloween", Description = "Spawn a Halloween themed grunt guard!" },
         new("Jaco Shooter [M]", "x_halloween_shooter") { Price = 25, Quantity = 5, Category = "Halloween", Description = "Spawn a Halloween themed mactera shooter!" },
         new("Little Ghost [M]", "x_halloween_shredder") { Price = 25, Quantity = 5, Category = "Halloween", Description = "Spawn a Halloween themed shredders (x2)" },
-        new("Halloween Pet [M]", "x_halloween_pet") { Price = 25, Parameters = TargetsRestricted, Category = "Halloween", Description = "Spawn a friendly pet shredder to guard your target!" },
+        new("Halloween Pet [M]", "x_halloween_pet") { Price = 50, Parameters = TargetsRestricted, Category = "Halloween", Description = "Spawn a friendly pet shredder to guard your target!" },
         new("Pumpkin Patch [M]", "x_halloween_pumpkinpatch") { Price = 100, Category = "Halloween", Description = "Spawn a pumpkin patch that spawns halloween themed enemies at random." },
         new("Candle Lobber [M]", "x_halloween_candlelobber") { Price = 100, Category = "Halloween", Description = "Spawn a candle wax lobber! Careful it burns!" },
         new("Witch Warden [M]", "x_halloween_witchwarden") { Price = 100, Category = "Halloween", Description = "Spawn a warden with a witchy theme and stronger magic!" },
@@ -242,7 +244,6 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Drop Medic Pod [M]", "sggc_help_medicpod") { Price = 150, Category = "Helpful / Custom", Description = "Spawns a resupply pod that instead of giving supplies has a healing aura. It has a limited charge." },
         new("Drop Shield Pod [M]", "sggc_help_shieldpod") { Price = 150, Category = "Helpful / Custom", Description = "Spawns a resupply pod that instead of giving supplies boosts shield regen in the area. It has a limited charge." },
         new("Drop Military Pod [M]", "sggc_help_militarypod") { Price = 200, Category = "Helpful / Custom", Description = "Spawns a resupply pod gives supplies and friendly shredders, as well as comes with a turret attached!" },
-        new("Summon Blood Shard [M]", "sggc_help_bloodshard") { Price = 150, Category = "Helpful / Custom", Description = "Spawns a blood shard that will revive players when they kill enough enemies." },
         new("Spawn Medi-Bulk [M]", "sggc_help_medibulk") { Price = 200, Category = "Helpful / Custom", Description = "Spawns a bulk that heals on explosion from eating too much red sugar." },
 
         //Rival Enemies
@@ -288,6 +289,61 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Rock and Stone! [A]", "tmc_rockandstone") { Price = 25, Category = "Tweek Mission Control", Description = "Tweek MC announces a Rock and Stone cheer!" },
         new("Xmas Song [A]", "tmc_xmas_song") { Price = 25, Category = "Tweek Mission Control", Description = "Tweek MC sings a xmas song poorly" },
 
+        //Heaven Hell Expansion
+        //Heaven
+        new("Biblically Accurate Cave Angel [M]", "hh_a_accurateangel") { Price = 25, Category = "Heaven", Description = "Summons a Biblically accurate Angel thats rideable and summons IFG Pulses to help." },
+        new("Seraph Bug [M]", "hh_a_seraph") { Price = 25, Category = "Heaven", Description = "Summons a helpful angelic hexawing that sends you power ups every so often." },
+        new("Guardian Angel [M]", "hh_a_guardian") { Price = 50, Category = "Heaven", Description = "Summons a Biblically accurate Angel thats rideable and summons IFG Pulses to help." },
+
+        //Hell - Other
+        new("Summon Blood Shard [M]", "hh_do_bloodshard") { Price = 150, Category = "Hell / Other", Description = "Spawns a blood shard that will revive players when they kill enough enemies." },
+        new("Summon Death [M]", "hh_do_death") { Price = 500, Category = "Hell / Other", Description = "Spawns literal death to come and hunt down the party. They disappear after getting at least 2 kills." },
+        new("Spawn Sacrificial Skull [M]", "hh_do_sacrificeskull") { Price = 100, Category = "Hell / Other", Description = "Spawns a sacrificial skull. When killed it can be thrown at downed players to revive them." },
+
+        //Hell - Envvy
+        new("Spawn Cursed Dwarf [M]", "hh_de_curseddwarf") { Price = 25, Category = "Hell / Envy", Description = "Spawns a Dwarf that was cursed into becoming a glyphid!" },
+        new("Spawn Envious Mass [M]", "hh_de_envymass") { Price = 100, Category = "Hell / Envy", Description = "Spawns a Dwarven Mass that grew into a bulk!" },
+        new("Spawn Fallen Team Leech [M]", "hh_de_teamleech") { Price = 75, Category = "Hell / Envy", Description = "Spawns a Team of Dwarvves fused with a Cave Leech." },
+        new("Spawn IMP-oster [M]", "hh_de_imposter") { Price = 200, Category = "Hell / Envy", Description = "Spawns a Dwarf that hunts players down and then decides to shank them or not. It disappears after downing 1 player." },
+        new("Spawn Greater Envy Demon [M]", "hh_de_envyboss") { Price = 250, Category = "Hell / Envy", Description = "Spawns a Envy Boss. Is starts inside of a player then bursts out and evolves the longer it's alive!" },
+
+        //Hell - Gluttony
+        new("Spawn Belly Worm [M]", "hh_dg_bellyworm") { Price = 75, Category = "Hell / Gluttony", Description = "Spawns an underground cave leech that jumps out when prey approaches." },
+        new("Spawn Glutton [M]", "hh_dg_glutton") { Price = 50, Category = "Hell / Gluttony", Description = "Spawns an glutton trawler thats tiny and fast." },
+        new("Spawn Plague Carrier [M]", "hh_dg_plaguecarrier") { Price = 75, Category = "Hell / Gluttony", Description = "Spawns an infected praetorian thatt spawns plague flies." },
+        new("Spawn Plague Parasite [M]", "hh_dg_plagueparasite") { Price = 125, Category = "Hell / Gluttony", Description = "Spawns a plague parasite attached to a player for their allies to remove. (or on the ground in solo)." },
+        new("Spawn Greater Glutttony Demon [M]", "hh_dg_gluttonyboss") { Price = 250, Category = "Hell / Gluttony", Description = "Spawns a Gluttony Boss. It's a massive trawler with cave leech arms! It heals by eating." },
+
+        //Hell - Greed
+        new("Spawn Greed Grunt [M]", "hh_dg2_grunt") { Price = 50, Category = "Hell / Greed", Description = "Spawns a grunt of greed made of gold. They're only damaged by a pickaxe." },
+        new("Spawn Midas [M]", "hh_dg2_midas") { Price = 75, Category = "Hell / Greed", Description = "Spawns a Midas Demon of gold! Theyre big and can only be harmed by a pickaxe." },
+        new("Spawn Greater Greed Demon [M]", "hh_dg2_greedboss") { Price = 250, Category = "Hell / Greed", Description = "Spawns a Greed Boss. They are massive and trail gold, but highly explosive." },
+
+        //Hell - Lust
+        new("Spawn Jelly Shot x2 [M]", "hh_dl_jellyshot") { Price = 25, Quantity = 5, Category = "Hell / Lust", Description = "Spawns a number of Jelly shots. They inttoxicate players they hit. (Spawns x2 amount)" },
+        new("Spawn Love Bug [M]", "hh_dl_lovebug") { Price = 50, Category = "Hell / Lust", Description = "Spawns a love bug attached to a mule. It drives the mule around until desttroyed." },
+        new("Spawn Pheramoaner [M]", "hh_dl_moaner") { Price = 50, Category = "Hell / Lust", Description = "Spawns a moaning mactera that shoots pheramones." },
+        new("Spawn Succu Grabber [M]", "hh_dl_grabber") { Price = 75, Category = "Hell / Lust", Description = "Spawns a Succugrabber. They intoxicate anyone they grab." },
+        new("Spawn Greater Lust Demon [M]", "hh_dl_lustboss") { Price = 250, Category = "Hell / Lust", Description = "Spawns a Lust Boss. A flying tempting beer that intoxicated dwarves." },
+
+        //Hell - Pride
+        new("Spawn Hell Priest [M]", "hh_dp_priest") { Price = 100, Category = "Hell / Pride", Description = "Spawns a a Priest of Pride. They Summon and buff all demons." },
+        new("Spawn Greater Pride Demon [M]", "hh_dp_prince") { Price = 250, Category = "Hell / Pride", Description = "Spawns a Pride Demon. They are a tough dreadnaught level threat." },
+
+        //Hell - Sloth
+        new("Spawn Greater Sloth Demon [M]", "hh_ds_slothboss") { Price = 250, Category = "Hell / Sloth", Description = "Spawns a Sloth Demon. A Massive slow enemy that slows all dwarves around them." },
+
+        //Hell - Wrath
+        new("Spawn Cambion [M]", "hh_dw_cambion") { Price = 50, Category = "Hell / Wrath", Description = "Spawns a cambion. A fastt terrifying slasher. Don't try to tame it..." },
+        new("Spawn Flyball [M]", "hh_dw_flyball") { Price = 50, Category = "Hell / Wrath", Description = "Spawns a flyball. It fly around and fires homing eyeballs." },
+        new("Spawn Greater Wrath Demon [M]", "hh_dw_wrathboss") { Price = 250, Category = "Hell / Wrath", Description = "Spawns a Wrath Demon. They are too angry to die, and instead you must survive until their anger runs out." },
+
+        //Random Boss
+        new("Random Boss - Any [M]", "boss_any") { Price = 250, Category = "Enemy / Boss", Description = "Spawns a random boss from any pool." },
+        new("Random Boss - General [M]", "boss_generic") { Price = 250, Category = "Enemy / Boss", Description = "Spawns a random boss from the generic pool." },
+        new("Random Boss - Rival [M]", "boss_rival") { Price = 250, Category = "Enemy / Boss", Description = "Spawns a random boss from rival pool." },
+        new("Random Boss - Greater Demons [M]", "boss_demon") { Price = 250, Category = "Enemy / Boss", Description = "Spawns a random boss from boss pool." },
+        
         //CC Special
         new("Hype Train", "event-hype-train") {}
     };
