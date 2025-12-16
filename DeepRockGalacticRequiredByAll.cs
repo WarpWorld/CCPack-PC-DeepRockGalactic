@@ -273,6 +273,10 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Spawn Bulb Shooter [M]", "x_xmas_bulbshooter") { Price = 50, Category = "Xmas", Description = "Spawns a Custom mactera shooter that can freeze dwarves" },
         new("Spawn Snowmad [M]", "x_xmas_snowmad") { Price = 250, Category = "Xmas", Description = "Spawns a custom snowman enemy that runs at players and tries to freeze them! If pinged it will be stopped temporarily." },
         new("Present [M]", "xmas_gift") { Price = 100, Category = "Xmas", Description = "Drop a Present for the Player! (Could be good or bad)" },
+        new("Spawn Elf [M]", "xmas_elf") { Price = 100, Category = "Xmas", Description = "Spawns an annoying Xmas Elf that runs around jingling." },
+        new("Snowball Pile [A]", "xmas_snowballs") { Price = 25, Category = "Xmas", Description = "Spawn a snowball pile that melts away after a minute." },
+        new("Spawn BIT-C [M]", "xmas_bitc") { Price = 150, Category = "Xmas", Description = "Spawns a mini xmas BET-C that shoots snow and cheer, but is infected by grinchy parasites." },
+        new("Ice Trap [M]", "xmas_icetrap") { Price = 50, Category = "Xmas", Description = "Encases the Player in Ice! They'll have to dig out." },
 
         //Pride Month
         new("Pride Power [A]", "pride_buff") { Price = 50, Category = "Pride", Duration = 30, Description = "All players move faster and shoot rainbows out of their butts for the duration." },
