@@ -1,5 +1,11 @@
 # SETTING UP CROWD CONTROL for DRG
 
+## Pack metadata
+- **Game display name:** Deep Rock Galactic
+- **Crowd Control game ID:** `DeepRockGalactic`
+- **Connector type:** `FileConnector`
+
+
 ### METHOD 1 - DRG SIDE LOADER
 
 ### METHOD 2 - MOD.IO SUBSCRIPTION
