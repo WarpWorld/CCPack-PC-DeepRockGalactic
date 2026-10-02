@@ -1,7 +1,7 @@
-(copied from gdoc)
 # SETTING UP CROWD CONTROL for DRG
 
 ### METHOD 1 - DRG SIDE LOADER
+
 ### METHOD 2 - MOD.IO SUBSCRIPTION
 
 ---
@@ -27,3 +27,8 @@ Go to https://mod.io/g/drg/m/crowd-control and click the subscribe button.
 
 Load DRG and wait for the mod to automatically install, then restart your game.
 Use the crowd control app as normal.
+
+## Repository layout
+
+- `DeepRockGalactic.cs` and `DeepRockGalacticRequiredByAll.cs` define the pack variants.
+- `mod/` contains the game-side payload and `icons/` contains its direct artwork.
