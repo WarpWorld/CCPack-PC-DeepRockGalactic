@@ -57,7 +57,6 @@ public class DeepRockGalactic : FileEffectPack
         new("Spawn Lacerator (Boss) [M]", "grunt_twin_b") { Price = 500, Category = "Enemy / Glyphid", Description = "Spawns the Dreadnaught Twin Lacerator" },
         new("Spawn Hiveguard (Boss) [M]", "grunt_hiveguard") { Price = 1000, Category = "Enemy / Glyphid", Description = "Spawns the Dreadnaught Hiveguard" },
 
-
         //Enemy - Mactera
         new("Spawn Mactera Shooter [M]", "mactera_normal") { Price = 25, Quantity = 5, Category = "Enemy / Mactera", Description = "Spawns a Mactera Shooter" },
         new("Spawn Mactera Grabber [M]", "mactera_grabber") { Price = 100, Category = "Enemy / Mactera", Description = "Spawns a Mactera Greabber" },
@@ -84,6 +83,10 @@ public class DeepRockGalactic : FileEffectPack
         //Enemy - Naedocyte
         new("Spawn Naedocyte Shockers [M]", "jelly_shockers") { Price = 10, Quantity = 5, Category = "Enemy / Naedocyte", Description = "Spawns a small group of Shockers (Quantity x3)" },
         new("Spawn Naedocyte Breeder [M]", "jelly_breeder") { Price = 150, Category = "Enemy / Naedocyte", Description = "Spawns a Naedocyte Breeder" },
+
+        //Enemy - Ossiran
+        new("Spawn Ossiran Scrabs [M]", "ossiran_scrab") { Price = 10, Quantity = 10, Category = "Enemy / Ossiran", Description = "Spawns a couple scrabs (Quantity x2)" },
+        new("Spawn Ossiran PitJaw [M]", "ossiran_pitjaw") { Price = 50, Category = "Enemy / Ossiran", Description = "Spawns a pitjaw nearby." },
 
         //Enemy - Other
         new("Spawn Nayaka Trawler [M]", "enemy_trawler") { Price = 150, Category = "Enemy / Other", Description = "Spawns a Nayaka Trawler" },
@@ -197,7 +200,8 @@ public class DeepRockGalactic : FileEffectPack
         new("Horror [A]", "halloween_horror") { Price = 50, Category = "Halloween", Parameters = TargetsMain, Duration = 20, Description = "Send visual horrors to the target player." },
 
         //Xmas
-        new("Present [M]", "xmas_gift") { Price = 50, Category = "Xmas", Description = "Drop a Present for the Player! (Could be good or bad)" },
+        new("Present [M]", "xmas_gift") { Price = 50, Category = "Xmas", Description = "Drop a Modified Present for the Player! (Could be good or bad)" },
+        new("Present (Vanilla) [M]", "xmas_gift_vanilla") { Price = 10, Category = "Xmas", Description = "Drop a Vanilla Present for the Player! (Could be good or bad)" },
         new("Spawn Elf [M]", "xmas_elf") { Price = 100, Category = "Xmas", Description = "Spawns an annoying Xmas Elf that runs around jingling." },
         new("Snowball Pile [A]", "xmas_snowballs") { Price = 25, Category = "Xmas", Description = "Spawn a snowball pile that melts away after a minute." },
         new("Spawn BIT-C [M]", "xmas_bitc") { Price = 150, Category = "Xmas", Description = "Spawns a mini xmas BET-C that shoots snow and cheer, but is infected by grinchy parasites." },
@@ -217,6 +221,13 @@ public class DeepRockGalactic : FileEffectPack
         new("Electric Boogaloo [A]", "tmc_special2") { Price = 25, Category = "Tweek Mission Control", Description = "Tweek MC announces Special 2, electric boogaloo" },
         new("Rock and Stone! [A]", "tmc_rockandstone") { Price = 25, Category = "Tweek Mission Control", Description = "Tweek MC announces a Rock and Stone cheer!" },
         new("Xmas Song [A]", "tmc_xmas_song") { Price = 25, Category = "Tweek Mission Control", Description = "Tweek MC sings a xmas song poorly" },
+
+        //Random Spawns
+        new("Spawn Random Glyphid [M]", "random_glyphid") { Price = 25, Category = new[]{"Enemy / Glyphid", "Random"}, Description = "Spawns a random Glyphid Enemy from the Vanilla Pool." },
+        new("Spawn Random Mactera [M]", "random_mactera") { Price = 50, Category = new[]{"Enemy / Mactera", "Random"}, Description = "Spawns a random Mactera Enemy from the Vanilla Pool." },
+        new("Spawn Random Rockpox [M]", "random_rockpox") { Price = 75, Category = new[]{"Enemy / RockPox", "Random"}, Description = "Spawns a random Rockpox Enemy from the Vanilla Pool." },
+        new("Spawn Random Rival [M]", "random_rival") { Price = 25, Category = new[]{"Enemy / Rivals", "Random"}, Description = "Spawns a random Rival Enemy from the Vanilla Pool." },
+        new("Spawn Random Vanilla Boss Enemy [M]", "random_boss_vanilla") { Price = 250, Category = new[]{"Enemy / Boss", "Random"}, Description = "Spawns a random Boss Enemy from the Vanilla Pool." },
 
         //CC Special
         new("Hype Train", "event-hype-train") {}

@@ -273,6 +273,7 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Spawn Bulb Shooter [M]", "x_xmas_bulbshooter") { Price = 50, Category = "Xmas", Description = "Spawns a Custom mactera shooter that can freeze dwarves" },
         new("Spawn Snowmad [M]", "x_xmas_snowmad") { Price = 250, Category = "Xmas", Description = "Spawns a custom snowman enemy that runs at players and tries to freeze them! If pinged it will be stopped temporarily." },
         new("Present [M]", "xmas_gift") { Price = 100, Category = "Xmas", Description = "Drop a Present for the Player! (Could be good or bad)" },
+        new("Present (Vanilla) [M]", "xmas_gift_vanilla") { Price = 10, Category = "Xmas", Description = "Drop a Vanilla Present for the Player! (Could be good or bad)" },
         new("Spawn Elf [M]", "xmas_elf") { Price = 100, Category = "Xmas", Description = "Spawns an annoying Xmas Elf that runs around jingling." },
         new("Snowball Pile [A]", "xmas_snowballs") { Price = 25, Category = "Xmas", Description = "Spawn a snowball pile that melts away after a minute." },
         new("Spawn BIT-C [M]", "xmas_bitc") { Price = 150, Category = "Xmas", Description = "Spawns a mini xmas BET-C that shoots snow and cheer, but is infected by grinchy parasites." },
@@ -343,10 +344,17 @@ public class DeepRockGalacticRequiredByAll : FileEffectPack
         new("Spawn Greater Wrath Demon [M]", "hh_dw_wrathboss") { Price = 250, Category = "Hell / Wrath", Description = "Spawns a Wrath Demon. They are too angry to die, and instead you must survive until their anger runs out." },
 
         //Random Boss
-        new("Random Boss - Any [M]", "boss_any") { Price = 250, Category = "Enemy / Boss", Description = "Spawns a random boss from any pool." },
-        new("Random Boss - General [M]", "boss_generic") { Price = 250, Category = "Enemy / Boss", Description = "Spawns a random boss from the generic pool." },
-        new("Random Boss - Rival [M]", "boss_rival") { Price = 250, Category = "Enemy / Boss", Description = "Spawns a random boss from rival pool." },
-        new("Random Boss - Greater Demons [M]", "boss_demon") { Price = 250, Category = "Enemy / Boss", Description = "Spawns a random boss from boss pool." },
+        new("Random Boss - Any [M]", "boss_any") { Price = 250, Category = new[]{"Enemy / Boss", "Random"}, Description = "Spawns a random boss from any pool." },
+        new("Random Boss - General [M]", "boss_generic") { Price = 250, Category = new[]{"Enemy / Boss", "Random"}, Description = "Spawns a random boss from the custom generic pool." },
+        new("Random Boss - Rival [M]", "boss_rival") { Price = 250, Category = new[]{"Enemy / Boss", "Random"}, Description = "Spawns a random boss from custom rival pool." },
+        new("Random Boss - Greater Demons [M]", "boss_demon") { Price = 250, Category = new[]{"Enemy / Boss", "Random"}, Description = "Spawns a random boss from custom boss pool." },
+
+        //Random Spawns
+        new("Spawn Random Glyphid [M]", "random_glyphid") { Price = 25, Category = new[]{"Enemy / Glyphid", "Random"}, Description = "Spawns a random Glyphid Enemy from the Vanilla Pool." },
+        new("Spawn Random Mactera [M]", "random_mactera") { Price = 50, Category = new[]{"Enemy / Mactera", "Random"}, Description = "Spawns a random Mactera Enemy from the Vanilla Pool." },
+        new("Spawn Random Rockpox [M]", "random_rockpox") { Price = 75, Category = new[]{"Enemy / RockPox", "Random"}, Description = "Spawns a random Rockpox Enemy from the Vanilla Pool." },
+        new("Spawn Random Rival [M]", "random_rival") { Price = 25, Category = new[]{"Enemy / Rivals", "Random"}, Description = "Spawns a random Rival Enemy from the Vanilla Pool." },
+        new("Spawn Random Vanilla Boss Enemy [M]", "random_boss_vanilla") { Price = 250, Category = new[]{"Enemy / Boss", "Random"}, Description = "Spawns a random Boss Enemy from the Vanilla Pool." },
         
         //CC Special
         new("Hype Train", "event-hype-train") {}
